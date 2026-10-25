@@ -11,6 +11,7 @@ def must(s, a, b, cnt=1):
     return s.replace(a, b, cnt)
 
 s = rd('zhanshen.html')
+s = must(s, "const NO_INTRA = false;", "const NO_INTRA = true;")
 s = must(s, "const PAGE = new URLSearchParams(location.search).get('p') === 'gt' ? { key:'gt', name:'狗頭看盤' } : { key:'zs', name:'戰神看盤' };",
          """const PAGE = { key:'zx', name:'戰神看盤' };
 // 一次性設定連結：網址後面帶 #t=憑證，存進這台裝置後立刻從網址拿掉
@@ -67,7 +68,7 @@ self.addEventListener('fetch', e => {
 ''' % ver)
 open(os.path.join(OUT, 'README.md'), 'w', encoding='utf-8').write('''# 戰神看盤
 
-台股看盤網站：VWB 成交量加權通道、VW Z、VWD、布林大底、布林谷底線、龜苓膏、主力意圖、DegenX，全週期 K 線、畫圖、權證挑選、籌碼。
+台股看盤網站：VWB 成交量加權通道、VW Z、VWD、布林大底、布林谷底線、龜苓膏、主力意圖、DegenX，日／週／月 K 線、畫圖、權證挑選、籌碼。
 
 - 網址：https://opsite1978-max.github.io/%s/
 - 行情：FinMind（憑證只存在各自裝置的瀏覽器，不在程式裡）

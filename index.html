@@ -335,6 +335,7 @@ const PAGE = { key:'zx', name:'戰神看盤' };
 // 一次性設定連結：網址後面帶 #t=憑證，存進這台裝置後立刻從網址拿掉
 { const m = location.hash.match(/^#t=([\w.\-]+)$/); if (m){ try { localStorage.setItem('zsite.token', m[1]); } catch (e){} history.replaceState(null, '', location.pathname + location.search); } }
 const PFX = PAGE.key + ':';
+const NO_INTRA = true;   // 只看日／週／月的網站設成 true（不用分 K 資料）
 document.title = PAGE.name;
 { const h = document.getElementById('pageName'); if (h) h.textContent = PAGE.name;
   const o = document.getElementById('otherPage'); if (o){ o.textContent = PAGE.key === 'gt' ? '戰神看盤' : '狗頭看盤'; o.href = PAGE.key === 'gt' ? 'zhanshen.html' : 'goutou.html'; } }
@@ -586,6 +587,7 @@ const INTRA = {
 };
 const IVN = { '5':'5分K', '15':'15分K', '30':'30分K', '60':'60分K', '240':'4小時K', D:'日K', W:'週K', M:'月K' };
 const isIntra = iv => !!INTRA[iv];
+if (NO_INTRA && isIntra(UI.interval)) UI.interval = 'D';
 function curDays(iv){ const c = INTRA[iv], v = +(UI.days || {})[iv]; return c.days.includes(v) ? v : c.def; }
 function saveUI(){ LS.set(PFX + 'ui', UI); }
 function siteToken(){ try { return (localStorage.getItem('zsite.token') || '').trim(); } catch(e){ return ''; } }
@@ -3018,6 +3020,7 @@ document.getElementById('togChips').onclick = () => { UI.showChips = !UI.showChi
 document.getElementById('symForm').addEventListener('submit', e => { e.preventDefault(); document.getElementById('symInput').blur(); loadSymbol(document.getElementById('symInput').value); });
 document.getElementById('presets').addEventListener('click', e => { const b = e.target.closest('[data-s]'); if (b) loadSymbol(b.dataset.s); });
 const seg = document.getElementById('intervalSeg');
+if (NO_INTRA) for (const b of seg.querySelectorAll('button')) if (isIntra(b.dataset.v)) b.remove();
 const periodSel = document.getElementById('periodSel'), togNight = document.getElementById('togNight'), themeSeg = document.getElementById('themeSeg');
 function syncToolbar(){
   for (const b of seg.querySelectorAll('button')) b.setAttribute('aria-pressed', String(b.dataset.v === UI.interval));
@@ -3171,7 +3174,7 @@ async function checkToken(){
     const l = d[d.length - 1];
     lines.push(l ? '日 K：可以用（台積電 ' + l.date.replace(/-/g, '/') + ' 收盤 ' + l.close + '）' : '日 K：連得上，但沒有資料');
   } catch (e){ lines.push('日 K：不能用。' + e.message); }
-  try {
+  if (!NO_INTRA) try {
     const ds = await tradingDates(5); let ok = null;
     for (let k = ds.length - 1; k >= Math.max(0, ds.length - 3) && ok == null; k--){
       const d = await finmind({ dataset:'TaiwanStockKBar', data_id:'2330', start_date:ds[k] });
