@@ -28,6 +28,7 @@ s = must(s, "document.getElementById('a-token').onchange = e => { UI.token = e.t
          "document.getElementById('a-token').onchange = e => { try { localStorage.setItem('zsite.token', e.target.value.trim()); } catch (er){} UI.token = ''; saveUI(); };")
 s = must(s, "UI.token = document.getElementById('a-token').value.trim(); saveUI(); closeDrawer();",
          "try { localStorage.setItem('zsite.token', document.getElementById('a-token').value.trim()); } catch (er){} UI.token = ''; saveUI(); closeDrawer();")
+s = s.replace('manifest-zs.webmanifest', 'manifest.webmanifest')
 s = s.replace("到看盤頁「⚙ 設定」確認 FinMind 憑證", "到「指標設定 → 資料與顯示」確認 FinMind 憑證")
 open(os.path.join(OUT, 'index.html'), 'w', encoding='utf-8').write(s)
 
@@ -39,13 +40,14 @@ for fn in ('holders.html', 'insider.html'):
     t = t.replace("'data/", "'" + DATA).replace('manifest-m.webmanifest', 'manifest.webmanifest')
     t = t.replace("看盤頁「⚙ 設定」貼上新的 FinMind 憑證", "戰神看盤「指標設定 → 資料與顯示」貼上新的 FinMind 憑證")
     open(os.path.join(OUT, fn), 'w', encoding='utf-8').write(t)
-for fn in ('autoreload.js', 'icon-192.png', 'icon-512.png'):
+for fn in ('autoreload.js', 'icon-180.png', 'icon-192.png', 'icon-512.png'):
     shutil.copy(os.path.join(SRC, fn), os.path.join(OUT, fn))
 open(os.path.join(OUT, 'manifest.webmanifest'), 'w', encoding='utf-8').write('''{
   "id": "./index.html", "name": "戰神看盤", "short_name": "戰神看盤",
   "start_url": "./index.html", "scope": "./", "display": "standalone",
   "background_color": "#0d1016", "theme_color": "#0d1016", "lang": "zh-Hant-TW",
   "icons": [
+    { "src": "icon-180.png", "sizes": "180x180", "type": "image/png", "purpose": "any" },
     { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
     { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
   ]
@@ -54,7 +56,7 @@ open(os.path.join(OUT, 'manifest.webmanifest'), 'w', encoding='utf-8').write('''
 ver = sys.argv[3] if len(sys.argv) > 3 else '1'
 open(os.path.join(OUT, 'sw.js'), 'w', encoding='utf-8').write('''// 讓戰神看盤可以「安裝成 App」：外殼檔案離線可開，資料一律即時抓
 const CACHE = 'zhanshen-v%s';
-const SHELL = ['./', './index.html', './holders.html', './insider.html', './autoreload.js', './manifest.webmanifest', './icon-192.png', './icon-512.png'];
+const SHELL = ['./', './index.html', './holders.html', './insider.html', './autoreload.js', './manifest.webmanifest', './icon-180.png', './icon-192.png', './icon-512.png'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', e => { e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k.startsWith('zhanshen-') && k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim())); });
 self.addEventListener('fetch', e => {
