@@ -1,5 +1,5 @@
 // 讓戰神看盤可以「安裝成 App」：外殼檔案離線可開，資料一律即時抓
-const CACHE = 'zhanshen-v53';
+const CACHE = 'zhanshen-v54';
 const SHELL = ['./', './index.html', './holders.html', './insider.html', './autoreload.js', './manifest.webmanifest', './icon-192.png', './icon-512.png'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', e => { e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k.startsWith('zhanshen-') && k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim())); });
