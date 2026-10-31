@@ -16,7 +16,7 @@ import android.webkit.WebViewClient;
 
 /** 戰神看盤 App：直接開啟網站版，指標更新不用重新安裝。 */
 public class MainActivity extends Activity {
-    private static final String HOME = "https://opsite1978-max.github.io/zhanshen/";
+    private static final String HOME = "https://opsite1978-max.github.io/twstock-chart/zhanshen.html";
     private static final String HOST = "opsite1978-max.github.io";
     private WebView web;
 
