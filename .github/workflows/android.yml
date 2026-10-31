@@ -1,0 +1,60 @@
+name: 建置戰神看盤 App（Android）
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['android/**', '.github/workflows/android.yml']
+permissions:
+  contents: write
+concurrency:
+  group: android-app
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      KS_PASS: zhanshen-app-key
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with: { distribution: temurin, java-version: '17' }
+      - uses: gradle/actions/setup-gradle@v4
+        with: { gradle-version: '8.9' }
+      - name: 簽章金鑰（第一次自動產生，之後沿用，App 才能直接覆蓋更新）
+        uses: actions/cache@v4
+        with:
+          path: android/keystore
+          key: zhanshen-keystore-v1
+      - name: 沒有金鑰就產生一把
+        run: |
+          mkdir -p android/keystore
+          if [ ! -f android/keystore/release.p12 ]; then
+            keytool -genkeypair -storetype pkcs12 -keystore android/keystore/release.p12 -alias zhanshen -keyalg RSA -keysize 2048 -validity 10000 \
+              -storepass "$KS_PASS" -keypass "$KS_PASS" -dname "CN=Zhanshen App, O=Zhanshen, C=TW"
+            echo "::notice::產生新的簽章金鑰"
+          fi
+      - name: 建置 APK
+        env:
+          KS_PATH: ${{ github.workspace }}/android/keystore/release.p12
+          VERSION_CODE: ${{ github.run_number }}
+          VERSION_NAME: 1.${{ github.run_number }}
+        run: |
+          cd android
+          gradle --no-daemon assembleRelease
+          cp app/build/outputs/apk/release/app-release.apk ../zhanshen.apk
+          ls -la ../zhanshen.apk
+      - name: 發佈到 Releases（固定下載網址）
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          NOTES="戰神看盤 Android App 1.${{ github.run_number }}。下載 zhanshen.apk 後點開安裝（第一次要允許「安裝不明來源的應用程式」）。App 直接開啟網站版，指標更新不用重新安裝。"
+          if gh release view app >/dev/null 2>&1; then
+            gh release upload app zhanshen.apk --clobber
+            gh release edit app --title "戰神看盤 App 1.${{ github.run_number }}" --notes "$NOTES"
+          else
+            gh release create app zhanshen.apk --title "戰神看盤 App 1.${{ github.run_number }}" --notes "$NOTES" --latest
+          fi
+          echo "::notice::下載網址 https://github.com/${{ github.repository }}/releases/download/app/zhanshen.apk"
+      - uses: actions/upload-artifact@v4
+        with: { name: zhanshen-apk, path: zhanshen.apk }

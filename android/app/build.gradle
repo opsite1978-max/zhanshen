@@ -1,0 +1,23 @@
+plugins { id 'com.android.application' }
+android {
+    namespace 'tw.zhanshen.app'
+    compileSdk 34
+    defaultConfig {
+        applicationId 'tw.zhanshen.app'
+        minSdk 24
+        targetSdk 34
+        versionCode Integer.parseInt(System.getenv('VERSION_CODE') ?: '1')
+        versionName System.getenv('VERSION_NAME') ?: '1.0'
+    }
+    signingConfigs {
+        release {
+            storeFile file(System.getenv('KS_PATH') ?: 'release.p12')
+            storePassword System.getenv('KS_PASS') ?: ''
+            keyAlias 'zhanshen'
+            keyPassword System.getenv('KS_PASS') ?: ''
+            storeType 'pkcs12'
+        }
+    }
+    buildTypes { release { minifyEnabled false; signingConfig signingConfigs.release } }
+    compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
+}
