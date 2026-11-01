@@ -18,6 +18,12 @@ s = must(s, "const PAGE = new URLSearchParams(location.search).get('p') === 'gt'
 { const m = location.hash.match(/^#t=([\\w.\\-]+)$/); if (m){ try { localStorage.setItem('zsite.token', m[1]); } catch (e){} history.replaceState(null, '', location.pathname + location.search); } }""")
 s = must(s, """function siteToken(){ try { return (JSON.parse(localStorage.getItem('twchart.settings') || '{}').token || '').trim(); } catch(e){ return ''; } }""",
          """function siteToken(){ try { return (localStorage.getItem('zsite.token') || '').trim(); } catch(e){ return ''; } }""")
+s = must(s, """function tokSaveAll(t){
+  UI.token = t; saveUI();
+}""", """function tokSaveAll(t){
+  UI.token = t; saveUI();
+  try { localStorage.setItem('zsite.token', t); } catch (e){}   // 本站的籌碼、內部人頁也讀這一組
+}""")
 s = re.sub(r'\s*<nav class="chips">.*?</nav>', '', s, count=1)
 s = s.replace("'data/", "'" + DATA)
 s = must(s, """'<div class="row"><label for="a-token">本頁專用 token</label><input type="password" id="a-token" value="' + esc(UI.token || '') + '" placeholder="留空＝沿用看盤頁憑證" autocomplete="off" spellcheck="false"></div>' +""",
