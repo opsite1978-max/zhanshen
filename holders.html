@@ -248,7 +248,7 @@ let INDEX = { stocks:[] }, NAMES = {};
 let INS = {}, INS_LAST = '';
 async function loadInsider(){
   try {
-    const r = await fetch('/twstock-chart/data/insider/index.json?t=' + Date.now()); if (!r.ok) return;
+    const r = await fetch('/zhanshen/tw/data/insider/index.json?t=' + Date.now()); if (!r.ok) return;
     const j = await r.json();
     for (const x of j.stocks || []){ INS[x.code] = x; if (x.latest > INS_LAST) INS_LAST = x.latest; }
   } catch(e){}
@@ -263,7 +263,7 @@ function insNet(code, n){   // 最近 n 個月（以全市場最新申報月為�
 const fmtLot = v => v == null ? '–' : (v > 0 ? '+' : v < 0 ? '−' : '') + (Math.abs(v) >= 10 || v === 0 ? fmtInt(Math.abs(v)) : Math.abs(v).toFixed(1).replace(/\.0$/, '')) + ' 張';
 let WAR = null;
 async function loadWarrant(){
-  try { const r = await fetch('/twstock-chart/data/warrant/summary.json?t=' + Date.now()); if (r.ok) WAR = await r.json(); } catch(e){}
+  try { const r = await fetch('/zhanshen/tw/data/warrant/summary.json?t=' + Date.now()); if (r.ok) WAR = await r.json(); } catch(e){}
 }
 function warStat(code, win){   // 權證彙總（萬元）
   if (!WAR || !WAR.rows) return null; const r = WAR.rows[code]; if (!r) return null;
@@ -276,7 +276,7 @@ function warStat(code, win){   // 權證彙總（萬元）
 const fmtWan = v => v == null ? '–' : v >= 10000 ? (v / 10000).toFixed(v >= 1e5 ? 0 : 2) + ' 億' : fmtInt(v) + ' 萬';
 let INST = null;
 async function loadInst(){
-  try { const r = await fetch('/twstock-chart/data/insti/summary.json?t=' + Date.now()); if (r.ok) INST = await r.json(); } catch(e){}
+  try { const r = await fetch('/zhanshen/tw/data/insti/summary.json?t=' + Date.now()); if (r.ok) INST = await r.json(); } catch(e){}
 }
 function instNet(code, days, who){   // 法人淨買張數；who：ft 外資＋投信、f 外資、t 投信
   if (!INST || !INST.rows) return null; const r = INST.rows[code]; if (!r) return null;
@@ -285,7 +285,7 @@ function instNet(code, days, who){   // 法人淨買張數；who：ft 外資＋�
 }
 async function loadIndex(){
   const insP = loadInsider(), instP = loadInst(), warP = loadWarrant();
-  try { const r = await fetch('/twstock-chart/data/holders/index.json?t=' + Date.now()); if (r.ok) INDEX = await r.json(); } catch(e){}
+  try { const r = await fetch('/zhanshen/tw/data/holders/index.json?t=' + Date.now()); if (r.ok) INDEX = await r.json(); } catch(e){}
   await insP; await instP; await warP;
   (INDEX.stocks || []).forEach(s => NAMES[s[0]] = s[1]);
   $('#names').innerHTML = (INDEX.stocks || []).map(s => `<option value="${esc(s[0])} ${esc(s[1])}">`).join('');
@@ -314,7 +314,7 @@ async function open(code){
   out.innerHTML = '<div class="msg">讀取 ' + esc(code) + ' 的集保資料…</div>';
   showInsider(code);
   let D = null;
-  try { const r = await fetch('/twstock-chart/data/holders/' + code + '.json?t=' + Date.now()); if (r.ok) D = await r.json(); } catch(e){}
+  try { const r = await fetch('/zhanshen/tw/data/holders/' + code + '.json?t=' + Date.now()); if (r.ok) D = await r.json(); } catch(e){}
   const dates = D ? Object.keys(D.w).sort() : [];
   if (!dates.length){
     out.innerHTML = `<div class="msg">${esc(code)} ${NAMES[code] ? esc(NAMES[code]) + ' ' : ''}還沒有集保資料。` +
@@ -558,7 +558,7 @@ function distTable(S){
 let SCR = null, SORT = { k:'db', dir:-1 };
 async function loadScreen(){
   if (SCR) return runScreen();
-  try { const r = await fetch('/twstock-chart/data/holders/screen.json?t=' + Date.now()); if (r.ok) SCR = await r.json(); } catch(e){}
+  try { const r = await fetch('/zhanshen/tw/data/holders/screen.json?t=' + Date.now()); if (r.ok) SCR = await r.json(); } catch(e){}
   if (!SCR || !SCR.rows || !SCR.rows.length){ $('#sOut').innerHTML = '<div class="msg">選股資料還在準備中，請稍後再來。</div>'; SCR = null; return; }
   SCR.ci = {}; SCR.cols.forEach((c, i) => SCR.ci[c] = i);
   runScreen();
@@ -613,7 +613,7 @@ try { const o = JSON.parse(store.get('holders.screen') || 'null'); if (o){ $('#s
 let LSORT = { k:'score', dir:-1 };
 async function loadLayout(){
   if (!SCR){
-    try { const r = await fetch('/twstock-chart/data/holders/screen.json?t=' + Date.now()); if (r.ok){ SCR = await r.json(); SCR.ci = {}; SCR.cols.forEach((c, i) => SCR.ci[c] = i); } } catch(e){}
+    try { const r = await fetch('/zhanshen/tw/data/holders/screen.json?t=' + Date.now()); if (r.ok){ SCR = await r.json(); SCR.ci = {}; SCR.cols.forEach((c, i) => SCR.ci[c] = i); } } catch(e){}
   }
   if (!SCR){ $('#lOut').innerHTML = '<div class="msg">選股資料還在準備中，請稍後再來。</div>'; return; }
   runLayout();
@@ -684,7 +684,7 @@ async function renderWarrant(code, dpx, last){
   const w = $('#warWrap'); w.hidden = false;
   w.innerHTML = '<h2 style="margin-top:22px;padding-top:14px;border-top:1px solid var(--line)">權證動向</h2><div class="msg">讀取權證資料…</div>';
   let D = null;
-  try { const r = await fetch('/twstock-chart/data/warrant/u/' + code + '.json?t=' + Date.now()); if (r.ok) D = await r.json(); } catch(e){}
+  try { const r = await fetch('/zhanshen/tw/data/warrant/u/' + code + '.json?t=' + Date.now()); if (r.ok) D = await r.json(); } catch(e){}
   if (WTOKEN !== code) return;   // 已經換到別檔股票
   if (!D || !D.days || !D.days.some(d => d[1] || d[4])){
     w.innerHTML = '<h2 style="margin-top:22px;padding-top:14px;border-top:1px solid var(--line)">權證動向</h2><div class="msg">這檔股票近期沒有權證成交，或沒有發行權證。</div>'; return;
@@ -778,7 +778,7 @@ function drawWarrant(){
 /* ───────── 高勝率權證分點 ───────── */
 let WB = null;
 async function loadBranch(){
-  if (!WB){ try { const r = await fetch('/twstock-chart/data/wbranch/summary.json?t=' + Date.now()); if (r.ok) WB = await r.json(); } catch(e){} }
+  if (!WB){ try { const r = await fetch('/zhanshen/tw/data/wbranch/summary.json?t=' + Date.now()); if (r.ok) WB = await r.json(); } catch(e){} }
   if (!WB || !WB.branches){ $('#bOut').innerHTML = '<div class="msg">權證分點資料正在建立中：每小時會用你的 FinMind 帳號補抓約 4 到 5 個交易日的全部分點資料，回補 120 個交易日大約需要一天。資料累積到可以算勝率後，這裡就會出現結果。</div>'; return; }
   runBranch();
 }
@@ -836,7 +836,7 @@ const pctS = (v, d = 1) => v == null ? '–' : (v > 0 ? '+' : v < 0 ? '−' : ''
 let WSORT = { k:'net', dir:-1 };
 async function loadWar(){
   if (!WAR) await loadWarrant();
-  if (!SCR){ try { const r = await fetch('/twstock-chart/data/holders/screen.json?t=' + Date.now()); if (r.ok){ SCR = await r.json(); SCR.ci = {}; SCR.cols.forEach((c, i) => SCR.ci[c] = i); } } catch(e){} }
+  if (!SCR){ try { const r = await fetch('/zhanshen/tw/data/holders/screen.json?t=' + Date.now()); if (r.ok){ SCR = await r.json(); SCR.ci = {}; SCR.cols.forEach((c, i) => SCR.ci[c] = i); } } catch(e){} }
   if (!WAR || !WAR.rows){ $('#wOut').innerHTML = '<div class="msg">權證資料還在準備中，請稍後再來。</div>'; return; }
   runWar();
 }

@@ -243,7 +243,7 @@ function personTag(o){
 let INDEX = null, CUR = null, RANGE = 36;
 async function loadIndex(){
   try {
-    const r = await fetch('/twstock-chart/data/insider/index.json?t=' + Date.now());
+    const r = await fetch('/zhanshen/tw/data/insider/index.json?t=' + Date.now());
     INDEX = r.ok ? await r.json() : { stocks:[] };
   } catch(e){ INDEX = { stocks:[] }; }
   const byCode = {}; (INDEX.stocks || []).forEach(s => byCode[s.code] = s);
@@ -271,7 +271,7 @@ async function open(code){
   const out = $('#out');
   out.innerHTML = '<div class="msg">讀取 ' + esc(code) + ' 的申報資料…</div>';
   let D = null;
-  try { const r = await fetch('/twstock-chart/data/insider/' + code + '.json?t=' + Date.now()); if (r.ok) D = await r.json(); } catch(e){}
+  try { const r = await fetch('/zhanshen/tw/data/insider/' + code + '.json?t=' + Date.now()); if (r.ok) D = await r.json(); } catch(e){}
   const okMonths = D ? Object.keys(D.months).filter(k => D.months[k].s === 'ok').sort() : [];
   if (!D || !okMonths.length){
     const pending = INDEX && (INDEX.pending || []).includes(code);

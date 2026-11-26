@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """從 twstock-chart 的 zhanshen.html／holders.html／insider.html 產生獨立的戰神看盤網站。
-資料（權證、集保、內部人、台指期籌碼）直接讀同一帳號底下 /twstock-chart/data/；設定、畫線、FinMind 憑證另外存。"""
+資料（權證、集保、內部人、台指期籌碼）直接讀同一帳號底下 /zhanshen/tw/data/；設定、畫線、FinMind 憑證另外存。"""
 import re, sys, os, shutil
 SRC = sys.argv[1] if len(sys.argv) > 1 else '/home/claude/twstock-chart'
 OUT = sys.argv[2] if len(sys.argv) > 2 else os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DATA = '/twstock-chart/data/'
+DATA = '/zhanshen/tw/data/'
 def rd(p): return open(os.path.join(SRC, p), encoding='utf-8').read()
 def must(s, a, b, cnt=1):
     if a not in s: sys.exit('MISSING: ' + a[:80])
