@@ -138,6 +138,19 @@ body.simhud-on{padding-bottom:150px}
 #simSec .simcfg label{justify-content:space-between}
 .sxbad{color:#ff1744!important;font-weight:700} .sxwarn{color:#ff9100!important}
 .vt.sxhl{border-color:#ff9100;box-shadow:0 0 0 1px #ff9100}
+:root{--jw3:#2979ff;--jw4:#d500f9}
+#jwBox{display:flex;flex-direction:column;gap:10px}
+#jwSec .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+#jwSec label{font-size:12.5px;color:var(--muted);display:flex;gap:5px;align-items:center}
+#jwSec input[type=number]{background:var(--bg);border:1px solid var(--line2);border-radius:5px;padding:4px 6px;color:var(--fg);font:13px var(--mono);width:56px}
+#jwSec button{border:1px solid var(--line2);background:var(--panel2);border-radius:6px;padding:6px 12px;font-size:13px;color:var(--fg)}
+#jwSec .seg button{border:0;border-radius:0;background:transparent;color:var(--muted);padding:6px 10px}
+#jwSec .seg button+button{border-left:1px solid var(--line2)}
+#jwSec .seg button[aria-pressed="true"]{background:var(--panel2);color:var(--accent);font-weight:700}
+#jwSec .buy{background:var(--jw3);border-color:var(--jw3);color:#fff;font-weight:700}
+.jwtab{table-layout:fixed} .jwtab th:first-child{width:34%} .jwtab td{vertical-align:top;padding:6px 4px;word-break:break-all} .jwtab th{padding:6px 4px} .jwtab small{display:block;font-size:11px;color:var(--muted);margin-top:2px}
+.jwtab td.jwc{cursor:pointer} .jwtab td.jwc:hover{background:var(--panel2)} .jwtab td.dim{color:var(--dim)}
+.jwtab small.ok{color:#00c853} .jwtab small.bad{color:#ff5252} .jwtab a{color:var(--fg);text-decoration:none;font-weight:600}
 .chipsec{display:flex;flex-direction:column;gap:8px}
 .chipsec .head{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .chipsec h2{font-size:16px;margin:0}
@@ -364,8 +377,8 @@ legend{font:600 12px var(--sans);color:var(--accent);padding:0;margin-bottom:6px
 <body>
 <div class="wrap">
   <header class="top">
-    <div class="brand"><h1 id="pageName">戰神看盤</h1><span class="sub">版本 11/24 08:30・模擬交易</span><button class="iconbtn install" id="btnInstall" hidden title="把「我的戰神」裝成手機／電腦上的獨立 App，和家人的戰神看盤分開">安裝成 App</button></div>
-    <nav class="chips"><a class="chip" href="/zhanshen/tw/chain.html" title="產業上中下游、龍頭績優股、各產業資金流向與主力買賣超">產業鏈</a><a class="chip" href="/zhanshen/tw/vwscreen.html">選股</a><a class="chip" href="/zhanshen/tw/bbscreen.html">大底選股</a><a class="chip" href="/zhanshen/tw/qzscreen.html">起漲選股</a><a class="chip" href="/zhanshen/tw/bdscreen.html">神奇波段選股</a><a class="chip" href="/zhanshen/tw/xdscreen.html">尋底選股</a><a class="chip" href="/zhanshen/tw/lxscreen.html">尋龍底選股</a><a class="chip" href="/zhanshen/tw/dgscreen.html" title="尋龍底 × 月週共振 × BotWT 超賣金叉，日週月三個週期一起看，找最悲觀的起漲點">獨孤九劍選股</a><a class="chip" id="navPush" href="/zhanshen/tw/push.html" title="目前這檔的流通股數、每漲 10% 要多少量與金額、波段大概在哪裡反轉">籌碼推升</a><a class="chip" href="/zhanshen/tw/dgchip.html" title="獨孤九劍＋籌碼收斂（大戶比例、股東人數、換手天數）">九劍籌碼選股</a><a class="chip" href="/zhanshen/tw/jlmj.html" title="九個訊號（尋龍底、月週共振、BotWT、神奇波段、量能情緒、超級震盪、B4 超賣轉折、籌碼收斂、低檔燃料足）一起找起漲點">九龍模金訣</a><a class="chip" href="/zhanshen/tw/sxd.html" title="每天收盤後掃全市場：今天出現尋底★、超級尋底★★／★★★ 的股票，含停損價和大盤順逆風">超級尋底選股</a><a class="chip" href="#ckSec" id="navCk" title="融資維持率、庫藏股、大戶與流通股數、本益比河流、預估 EPS、關鍵分點">個股體檢</a><a class="chip" href="/zhanshen/tw/lock.html" title="大戶、董監持股與流通股數＋獨孤九劍：找籌碼集中、好拉抬的底部股">鎖碼九劍選股</a><a class="chip" href="/zhanshen/tw/jgscreen.html">機構牛選股</a><a class="chip" href="/zhanshen/tw/fxpos.html">外資期現貨</a><a class="chip" id="calcLink" href="/zhanshen/tw/calc.html">獲利計算</a><a class="chip" href="overview.html">總覽</a><a class="chip" href="./">看盤</a></nav>
+    <div class="brand"><h1 id="pageName">戰神看盤</h1><span class="sub">版本 11/27 09:00・絕望點選股</span><button class="iconbtn install" id="btnInstall" hidden title="把「我的戰神」裝成手機／電腦上的獨立 App，和家人的戰神看盤分開">安裝成 App</button></div>
+    <nav class="chips"><a class="chip" href="/zhanshen/tw/chain.html" title="產業上中下游、龍頭績優股、各產業資金流向與主力買賣超">產業鏈</a><a class="chip" href="/zhanshen/tw/vwscreen.html">選股</a><a class="chip" href="/zhanshen/tw/bbscreen.html">大底選股</a><a class="chip" href="/zhanshen/tw/qzscreen.html">起漲選股</a><a class="chip" href="/zhanshen/tw/bdscreen.html">神奇波段選股</a><a class="chip" href="/zhanshen/tw/xdscreen.html">尋底選股</a><a class="chip" href="/zhanshen/tw/lxscreen.html">尋龍底選股</a><a class="chip" href="/zhanshen/tw/dgscreen.html" title="尋龍底 × 月週共振 × BotWT 超賣金叉，日週月三個週期一起看，找最悲觀的起漲點">獨孤九劍選股</a><a class="chip" id="navPush" href="/zhanshen/tw/push.html" title="目前這檔的流通股數、每漲 10% 要多少量與金額、波段大概在哪裡反轉">籌碼推升</a><a class="chip" href="/zhanshen/tw/dgchip.html" title="獨孤九劍＋籌碼收斂（大戶比例、股東人數、換手天數）">九劍籌碼選股</a><a class="chip" href="/zhanshen/tw/jlmj.html" title="九個訊號（尋龍底、月週共振、BotWT、神奇波段、量能情緒、超級震盪、B4 超賣轉折、籌碼收斂、低檔燃料足）一起找起漲點">九龍模金訣</a><a class="chip" href="/zhanshen/tw/sxd.html" title="每天收盤後掃全市場：今天出現尋底★、超級尋底★★／★★★ 的股票，含停損價和大盤順逆風">超級尋底選股</a><a class="chip" href="#jwSec" id="navJw" title="VWB 第三通道以下＋布林大底＋尋龍底＋神奇波段底同時出現：日 K、週 K、月 K 一起找最絕望、最常反彈的位置">絕望點選股</a><a class="chip" href="#ckSec" id="navCk" title="融資維持率、庫藏股、大戶與流通股數、本益比河流、預估 EPS、關鍵分點">個股體檢</a><a class="chip" href="/zhanshen/tw/lock.html" title="大戶、董監持股與流通股數＋獨孤九劍：找籌碼集中、好拉抬的底部股">鎖碼九劍選股</a><a class="chip" href="/zhanshen/tw/jgscreen.html">機構牛選股</a><a class="chip" href="/zhanshen/tw/fxpos.html">外資期現貨</a><a class="chip" id="calcLink" href="/zhanshen/tw/calc.html">獲利計算</a><a class="chip" href="overview.html">總覽</a><a class="chip" href="./">看盤</a></nav>
     <form class="sym" id="symForm" autocomplete="off">
       <input id="symInput" list="symList" placeholder="代號或名稱，如 2408、南亞科" aria-label="股票代號" spellcheck="false">
       <button type="submit">載入</button>
@@ -502,6 +515,15 @@ legend{font:600 12px var(--sans);color:var(--accent);padding:0;margin-bottom:6px
     </div>
     <div class="loading" id="loading" hidden>資料載入中…</div>
   </div>
+
+  <section class="chipsec" id="jwSec">
+    <div class="head">
+      <h2>絕望點選股<span>VWB 第三通道以下＋布林大底＋尋龍底＋神奇波段底，日 K、週 K、月 K 一起看</span></h2>
+      <span class="spacer"></span>
+      <button class="tog" id="togJwBody" aria-pressed="true">顯示</button>
+    </div>
+    <div id="jwBox"></div>
+  </section>
 
   <section class="chipsec" id="simSec" hidden>
     <div class="head">
@@ -1029,6 +1051,22 @@ SCHEMA.jp = { tab:'極品反彈', title:'極品反彈（照你提供的通達信
     {k:'cD', l:'D 線', t:'color', d:'#ff6b6b'},
     {k:'cBuy', l:'買', t:'color', d:'#ff3b30'},
     {k:'cSell', l:'賣', t:'color', d:'#30b158'}
+  ]}
+]};
+SCHEMA.jw = { tab:'絕望點', title:'絕望點（你圈的四個位置一起看）：①VWB 主圖：最低價跌到第三通道（6 倍 ATR）以下；②布林大底：數值 50 以上（大底區）；③尋龍底：出現底部訊號；④神奇波段：出現「底」。四個裡面有 3 個在同一段時間（通道、布林、波段底看近 3 根，尋龍底看近 5 根）同時出現＝絕望★★★，4 個都有＝絕望★★★★。日 K、週 K、月 K、分 K 都能用（用哪個週期看就用那個週期算）。之後 10 根內第一次「止跌（10 根最低點已經是 2 根以前）＋收盤突破前 3 根最高」＝絕望後止跌✔。回測（全市場成交值 3 千萬以上約 760 檔，2025/6～2026/10 日 K，看 20 天後）：一般跌深 15% 的日子進場，10 天內再破底（被割）54%、20 天中位數 +0.3%；絕望★★★ 第一天：被割 21%、20 天平均 +12%、中位數 +8%、上漲 73%；絕望★★★★：被割 5%、中位數 +10%、上漲 85%（只有 107 次）；絕望後止跌✔ 再進場：被割 10%、中位數 +8%。要注意：這種訊號常常是全市場一起出現（2026/7、2026/8 兩次大跌佔了大部分），7 月那一波第一次出現時一半以上被割、8 月第二波才真的見底，所以最好等「止跌✔」再進場、一定要設停損（訊號前 10 根最低點）。週 K、月 K 因為資料年數不夠，沒辦法用同樣方式回測。', groups:[
+  { name:'條件', items:[
+    {k:'on', l:'主圖標出絕望點', t:'bool', d:true},
+    {k:'need', l:'幾個條件同時出現才算（3 或 4）', t:'int', d:3, min:2, max:4},
+    {k:'band', l:'①VWB 跌到第幾通道以下', t:'select', d:'l6', o:[['l3', '第二通道（3 倍 ATR）'], ['l6', '第三通道（6 倍 ATR）'], ['l9', '外通道（9 倍 ATR）']]},
+    {k:'bbLvl', l:'②布林大底數值至少', t:'int', d:50, min:10, max:100},
+    {k:'wA', l:'①②④ 往回看幾根', t:'int', d:3, min:1, max:10},
+    {k:'wC', l:'③尋龍底往回看幾根', t:'int', d:5, min:1, max:15}
+  ]},
+  { name:'標記', items:[
+    {k:'showConf', l:'標「絕望後止跌✔」（之後 10 根內止跌＋突破）', t:'bool', d:true},
+    {k:'c3', l:'絕望★★★', t:'color', d:'#2979ff'},
+    {k:'c4', l:'絕望★★★★', t:'color', d:'#d500f9'},
+    {k:'cConf', l:'止跌✔', t:'color', d:'#00c853'}
   ]}
 ]};
 SCHEMA.cp = { tab:'抄底預警', title:'抄底預警（照你提供的通達信公式移植）：方塊柱＝趨勢（55 根位置的雙重平滑，用收盤價和開盤價各算一條，收盤那條高於前一根開盤那條＝紅，否則灰）；紅／綠柱＝多方／空方（34 根位置的 5 日平均減 20）；青線＝預警（平常 65，兩種順勢指標同時過熱 +15、同時超賣 −15）。抄底＝7、13、6 根強弱指標都很低、在 60 根區間最底部、離 30 天高點跌超過 20%、15 根隨機指標極低、大盤 14 根隨機指標低於 30、股價跌到近 30 根低點九成附近、而且有 50 根以上資料。公式裡的大盤用加權指數（第一次多用 1 個 FinMind 額度，之後每天更新一次）；流通股本用集保總股數（沒有集保資料的商品，改用前一根低點的九成）。分 K 的大盤數值用前一個交易日的。這個公式沒有回測過。', groups:[
@@ -2332,6 +2370,36 @@ function vwTrend(B, length, smooth, fallback){
   const tE = ema(raw, smooth), trend = nanArr(n);
   for (let i = 0; i < n; i++) trend[i] = isNaN(raw[i]) ? NaN : tE[i];
   return { trend, volOK };
+}
+
+/* ═════════════ 絕望點：VWB 第三通道以下＋布林大底 ≥ 50＋尋龍底＋神奇波段底（任何週期都能算）═════════════ */
+function calcJW(B, p, parts){
+  const n = B.n, H = B.h, L = B.l, C = B.c; parts = parts || {};
+  const use = (k, f) => { if (parts[k]) return parts[k]; try { return (typeof R === 'object' && R && R !== parts && Object.getOwnPropertyDescriptor(R, k)) ? R[k] : f(B, P[k]); } catch (e){ return null; } };
+  const v = use('vwb', calcVWB), bb = use('bbot', calcBBOT), lx = use('lx', calcLX), bd = use('bd', calcBD);
+  const A = new Uint8Array(n), Bf = new Uint8Array(n), Cf = new Uint8Array(n), Df = new Uint8Array(n);
+  const band = v && !v.error ? v[p.band || 'l6'] : null;
+  for (let i = 0; i < n; i++){ if (band && band[i] > 0 && L[i] <= band[i]) A[i] = 1; if (bb && bb.S && bb.S[i] >= p.bbLvl) Bf[i] = 1; }
+  for (const s of (lx && lx.sig) || []) if (s.i >= 0 && s.i < n) Cf[s.i] = 1;
+  for (const s of (bd && bd.sig) || []) if (s.i >= 0 && s.i < n && s.text === '底') Df[s.i] = 1;
+  const win = (a, i, w) => { for (let j = Math.max(0, i - w + 1); j <= i; j++) if (a[j]) return 1; return 0; };
+  const SC = new Int8Array(n), LV = new Int8Array(n), CONF = new Uint8Array(n), CF = new Int32Array(n).fill(-1), FL = [];
+  const mk = [], sig = [], need = Math.max(2, Math.min(4, p.need || 3));
+  for (let i = 0; i < n; i++){
+    const f = [win(A, i, p.wA), win(Bf, i, p.wA), win(Cf, i, p.wC), win(Df, i, p.wA)]; FL[i] = f; SC[i] = f[0] + f[1] + f[2] + f[3];
+    if (!(SC[i] >= need && (i === 0 || SC[i - 1] < need))) continue;
+    LV[i] = SC[i];
+    const four = SC[i] >= 4, t = four ? '絕望★★★★' : '絕望★★★', col = four ? p.c4 : p.c3, why = ['通道', '布林大底', '尋龍底', '波段底'].filter((_, k) => f[k]).join('＋');
+    mk.push({ i, y:L[i], shape:'labelUp', text:t, col, tcol:'#fff', size:four ? 1.05 : 0.95, dy:6 });
+    sig.push({ i, src:'絕望點', text:t + '（' + why + '）', col });
+    for (let k = i; k < n && k <= i + 10; k++){
+      if (k < 3) continue; let lo = Infinity, li = -1; for (let j = Math.max(0, k - 9); j <= k; j++) if (L[j] < lo){ lo = L[j]; li = j; }
+      if (k - li >= 2 && C[k] > Math.max(H[k - 1], H[k - 2], H[k - 3])){ CF[i] = k; CONF[k] = 1;
+        if (p.showConf){ mk.push({ i:k, y:L[k], shape:'labelUp', text:'止跌✔', col:p.cConf, tcol:'#fff', size:0.9, dy:6 }); sig.push({ i:k, src:'絕望點', text:'絕望後止跌✔（止跌＋突破前 3 根最高，停損 ' + fmtP(lo) + '）', col:p.cConf }); }
+        break; }
+    }
+  }
+  return { SC, LV, CF, CONF, FL, mk, sig, ev:[], main:[] };
 }
 
 /* ═════════════ VWB PRO (main chart) ═════════════ */
@@ -5694,7 +5762,7 @@ function recompute(){
   const rows0 = typeof simRows === 'function' ? simRows(RAW.rows) : RAW.rows;   // 回放練習：只用到目前這根
   B = makeBars(RAW.tf && RAW.tf !== 'D' ? rows0 : aggregate(rows0, iv), iv, RAW.sample);
   R = {};
-  for (const [k, fn] of [['vwb', calcVWB], ['vwz', calcVWZ], ['vwd', calcVWD], ['bbot', calcBBOT], ['valley', calcVALLEY], ['turtle', calcTURTLE], ['intent', calcINTENT], ['degen', calcDEGEN], ['jp', calcJP], ['bs', calcBS], ['mwr', calcMWR], ['tmp', calcTMP], ['ml', calcML], ['b4', calcB4], ['sf', calcSF], ['sxd', calcSXD], ['cp', calcCP], ['dk', calcDK], ['zx', calcZX], ['ls', calcLS], ['md', calcMD], ['bao', calcBAO], ['bd', calcBD], ['km', calcKM], ['kmo', calcKMO], ['vxt', calcVXT], ['dco', calcDCO], ['bwt', calcBWT], ['ym', calcYM], ['sdb', calcSDB], ['cci', calcCCI], ['fz', calcFZ], ['kp', calcKP], ['jj', calcJJ], ['qj', calcQJ], ['cd', calcCD], ['smi', calcSMI], ['tp', calcTP], ['lbb', calcLBB], ['wl', calcWL], ['sy', calcSY], ['hm', calcHM], ['vo', calcVO], ['xg', calcXG], ['camo', calcCAMO], ['so', calcSO], ['dz', calcDZ], ['lx', calcLX], ['lhb', calcLHB], ['bz', calcBZ], ['jgn', calcJGN], ['ql', calcQL], ['qlw', calcQLW], ['kui', calcKUI], ['hpm', calcHPM], ['jm', calcJM], ['ct', calcCT]]){
+  for (const [k, fn] of [['vwb', calcVWB], ['vwz', calcVWZ], ['vwd', calcVWD], ['bbot', calcBBOT], ['valley', calcVALLEY], ['turtle', calcTURTLE], ['intent', calcINTENT], ['degen', calcDEGEN], ['jp', calcJP], ['bs', calcBS], ['mwr', calcMWR], ['tmp', calcTMP], ['ml', calcML], ['b4', calcB4], ['sf', calcSF], ['sxd', calcSXD], ['cp', calcCP], ['dk', calcDK], ['zx', calcZX], ['ls', calcLS], ['md', calcMD], ['bao', calcBAO], ['bd', calcBD], ['km', calcKM], ['kmo', calcKMO], ['vxt', calcVXT], ['dco', calcDCO], ['bwt', calcBWT], ['ym', calcYM], ['sdb', calcSDB], ['cci', calcCCI], ['fz', calcFZ], ['kp', calcKP], ['jj', calcJJ], ['qj', calcQJ], ['cd', calcCD], ['smi', calcSMI], ['tp', calcTP], ['lbb', calcLBB], ['wl', calcWL], ['sy', calcSY], ['hm', calcHM], ['vo', calcVO], ['xg', calcXG], ['camo', calcCAMO], ['so', calcSO], ['dz', calcDZ], ['lx', calcLX], ['lhb', calcLHB], ['jw', calcJW], ['bz', calcBZ], ['jgn', calcJGN], ['ql', calcQL], ['qlw', calcQLW], ['kui', calcKUI], ['hpm', calcHPM], ['jm', calcJM], ['ct', calcCT]]){
     // 用到才算：只有開著的副圖／主圖標記會真的計算，關掉的指標不花時間（以前每次都把 39 個指標全部重算）
     const obj = R, bars = B, fix = v => { Object.defineProperty(obj, k, { value:v, writable:true, configurable:true, enumerable:true }); return v; };
     Object.defineProperty(obj, k, { configurable:true, enumerable:true, set:fix,
@@ -5711,6 +5779,8 @@ function recompute(){
   if (P.ql.on && R.ql && R.ql.mk) for (const m of R.ql.mk){ const k = R.mainExtra.filter(q => q.i === m.i && q.shape === m.shape).length; R.mainExtra.push(Object.assign({}, m, { dy:(m.dy || 0) + (m.shape === 'labelDown' ? -1 : 1) * k * 18 })); }
   // 標準抄底：主升啟動★／行情結束
   if (R.bz && R.bz.mk && P.bz.on) for (const m of R.bz.mk){ const k = R.mainExtra.filter(q => q.i === m.i && q.shape === m.shape).length; R.mainExtra.push(Object.assign({}, m, { dy:(m.dy || 0) + (m.shape === 'labelDown' ? -1 : 1) * k * 18 })); }
+  // 絕望點：VWB 第三通道以下＋布林大底＋尋龍底＋神奇波段底（任何週期）
+  if (P.jw && P.jw.on && R.jw && R.jw.mk) for (const m of R.jw.mk){ const k = R.mainExtra.filter(q => q.i === m.i && q.shape === m.shape).length; R.mainExtra.push(Object.assign({}, m, { dy:(m.dy || 0) + k * 18 })); }
   // 反轉抄底：轉折點直接畫在主圖
   if (R.fz && R.fz.mk && P.fz.on) for (const m of R.fz.mk){ const k = R.mainExtra.filter(q => q.i === m.i && q.shape === m.shape).length; R.mainExtra.push(Object.assign({}, m, { dy:m.dy + (m.shape === 'labelDown' ? -1 : 1) * k * 18 })); }
   // HPM 通道：H BUY★／H SELL★（原版是淡色小三角形）
@@ -10023,7 +10093,7 @@ function queueRecompute(){ clearTimeout(recTimer); recTimer = setTimeout(recompu
 
 function buildTabs(){
   const tabs = document.getElementById('tabs');
-  const list = [['vwb', 'VWB 主圖'], ['vwz', 'VW Z'], ['vwd', 'VWD'], ['bbot', '布林大底'], ['valley', '谷底線'], ['turtle', '龜苓膏'], ['intent', '主力意圖'], ['degen', 'DegenX'], ['jp', '極品反彈'], ['bs', '精品BS'], ['mwr', '月週共振'], ['tmp', '個股溫度'], ['ml', '買賣力道'], ['b4', 'B4 鯊魚鰭'], ['sxd', '超級尋底'], ['cp', '抄底預警'], ['dk', '多空趨勢'], ['zx', '庄現趨勢'], ['ls', '拉升機會'], ['md', '量化MACD'], ['bao', '起爆'], ['bd', '神奇波段'], ['km', 'KD+MACD'], ['kmo', 'KD MACD 原版'], ['vxt', '波動率轉折'], ['dco', '主週期'], ['bwt', 'BotWT×3'], ['ym', '黃柱MACD'], ['sdb', '發現短底'], ['cci', '龍頭CCI'], ['fz', '反轉抄底'], ['kp', '主力控盤'], ['jj', '均價成本'], ['qj', '主力全景'], ['cd', '主力抄底'], ['smi', '聰明錢'], ['tp', '突破階梯'], ['lbb', '多空擺盪'], ['wl', '鐵底風險'], ['sy', '資金三線'], ['hm', '黑馬'], ['vo', '量能情緒'], ['xg', '布林大底加強版'], ['camo', '宇宙動能'], ['so', '超級震盪'], ['dz', '紅持綠空'], ['lx', '尋龍底'], ['lhb', '龍虎榜抄底'], ['hpm', 'HPM 通道'], ['jm', '操盤線'], ['ct', '週期通道'], ['jgn', '機構牛'], ['ql', '擒龍主圖'], ['qlw', '擒龍操盤王'], ['bz', '標準抄底'], ['kui', '一舉奪魁'], ['order', '副圖順序'], ['app', '資料與顯示']];
+  const list = [['vwb', 'VWB 主圖'], ['vwz', 'VW Z'], ['vwd', 'VWD'], ['bbot', '布林大底'], ['valley', '谷底線'], ['turtle', '龜苓膏'], ['intent', '主力意圖'], ['degen', 'DegenX'], ['jp', '極品反彈'], ['bs', '精品BS'], ['mwr', '月週共振'], ['tmp', '個股溫度'], ['ml', '買賣力道'], ['b4', 'B4 鯊魚鰭'], ['sxd', '超級尋底'], ['jw', '絕望點'], ['cp', '抄底預警'], ['dk', '多空趨勢'], ['zx', '庄現趨勢'], ['ls', '拉升機會'], ['md', '量化MACD'], ['bao', '起爆'], ['bd', '神奇波段'], ['km', 'KD+MACD'], ['kmo', 'KD MACD 原版'], ['vxt', '波動率轉折'], ['dco', '主週期'], ['bwt', 'BotWT×3'], ['ym', '黃柱MACD'], ['sdb', '發現短底'], ['cci', '龍頭CCI'], ['fz', '反轉抄底'], ['kp', '主力控盤'], ['jj', '均價成本'], ['qj', '主力全景'], ['cd', '主力抄底'], ['smi', '聰明錢'], ['tp', '突破階梯'], ['lbb', '多空擺盪'], ['wl', '鐵底風險'], ['sy', '資金三線'], ['hm', '黑馬'], ['vo', '量能情緒'], ['xg', '布林大底加強版'], ['camo', '宇宙動能'], ['so', '超級震盪'], ['dz', '紅持綠空'], ['lx', '尋龍底'], ['lhb', '龍虎榜抄底'], ['hpm', 'HPM 通道'], ['jm', '操盤線'], ['ct', '週期通道'], ['jgn', '機構牛'], ['ql', '擒龍主圖'], ['qlw', '擒龍操盤王'], ['bz', '標準抄底'], ['kui', '一舉奪魁'], ['order', '副圖順序'], ['app', '資料與顯示']];
   tabs.innerHTML = list.map(([k, t]) => '<button role="tab" data-t="' + k + '" aria-selected="' + (k === activeTab) + '">' + t + '</button>').join('');
   tabs.onclick = e => { const b = e.target.closest('[data-t]'); if (!b) return; activeTab = b.dataset.t; buildTabs(); buildBody(); };
 }
@@ -10618,6 +10688,117 @@ window.addEventListener('keydown', e => { if (!RP.on || /INPUT|SELECT|TEXTAREA/.
 document.getElementById('btnSim').onclick = () => { UI.sim = !UI.sim; saveUI(); document.getElementById('btnSim').setAttribute('aria-pressed', String(!!UI.sim)); if (UI.sim){ SIM.ui.open = true; simRender(); document.getElementById('simSec').scrollIntoView({ behavior:'smooth', block:'nearest' }); } else simRender(); schedule(); };
 document.getElementById('togSimBody').onclick = () => { SIM.ui.open = !SIM.ui.open; simSave(); simRender(); };
 document.getElementById('btnSim').setAttribute('aria-pressed', String(!!UI.sim));
+
+/* ═════════════ 絕望點選股（在你的手機／電腦上直接跟 FinMind 抓資料算，不靠任何自動排程）═════════════
+   第一次：抓最近一個交易日全市場行情排成交值，取前 N 檔，每檔抓 2008 年起的日 K 存在這台裝置；
+   之後：只補缺的日子（1～5 天用全市場一次抓，比較久沒開就每檔補）。日 K、週 K、月 K 都從日 K 自己組。 */
+var JW = { busy:false, stop:false, res:null, msg:'', at:'' };
+var JW_UI = (function(){ let u = null; try { u = LS.get(PFX + 'jwui', null); } catch (e){} return Object.assign({ n:300, lbD:5, lbW:3, lbM:2, need:3, onlyConf:false, etf:false, open:true }, u || {}); })();
+var JW_START = '2008-01-01';
+function jwSaveUI(){ try { LS.set(PFX + 'jwui', JW_UI); } catch (e){} }
+var jwDBp = null;
+function jwDB(){ return jwDBp || (jwDBp = new Promise(res => { try { const r = indexedDB.open('zs-jw', 1); r.onupgradeneeded = () => { if (!r.result.objectStoreNames.contains('h')) r.result.createObjectStore('h'); }; r.onsuccess = () => res(r.result); r.onerror = r.onblocked = () => res(null); } catch (e){ res(null); } })); }
+async function jwGet(k){ const db = await jwDB(); if (!db) return null; return new Promise(res => { try { const q = db.transaction('h').objectStore('h').get(k); q.onsuccess = () => res(q.result || null); q.onerror = () => res(null); } catch (e){ res(null); } }); }
+async function jwPut(k, v){ const db = await jwDB(); if (!db) return; try { db.transaction('h', 'readwrite').objectStore('h').put(v, k); } catch (e){} }
+// 日 K 壓縮存：日期整數＋Float32
+function jwPack(rows){ const n = rows.length, d = new Int32Array(n), x = new Float32Array(n * 5); rows.forEach((r, i) => { d[i] = +r[0].replace(/-/g, ''); x.set([r[1], r[2], r[3], r[4], r[5] / 1000], i * 5); }); return { d, x }; }
+function jwUnpack(o){ const rows = [], d = o.d, x = o.x; for (let i = 0; i < d.length; i++){ const s = String(d[i]); rows.push([s.slice(0, 4) + '-' + s.slice(4, 6) + '-' + s.slice(6), x[i * 5], x[i * 5 + 1], x[i * 5 + 2], x[i * 5 + 3], x[i * 5 + 4] * 1000]); } return rows; }
+async function jwLatestMarket(){
+  const ds = await tradingDates(8);
+  for (let k = ds.length - 1; k >= Math.max(0, ds.length - 4); k--){
+    const d = ds[k]; let data = [];
+    try { data = await finmind({ dataset:'TaiwanStockPrice', start_date:d, end_date:d }); } catch (e){ if (/額度|token|憑證/.test(e.message)) throw e; }
+    if (data && data.length > 500) return { d, data, ds };
+  }
+  throw new Error('抓不到最近一個交易日的全市場行情（這個功能要 FinMind 贊助或 Backer 會員的 token）');
+}
+function jwScanOne(rows){
+  const out = {}, lb = { D:JW_UI.lbD, W:JW_UI.lbW, M:JW_UI.lbM }, p = Object.assign({}, P.jw, { need:JW_UI.need, showConf:true });
+  for (const iv of ['D', 'W', 'M']){
+    const src = iv === 'D' ? rows.slice(-700) : aggregate(rows, iv), Bx = makeBars(src, iv, false), n = Bx.n; if (n < 40) continue;
+    let r; try { r = calcJW(Bx, p, { vwb:calcVWB(Bx, P.vwb), bbot:calcBBOT(Bx, P.bbot), lx:calcLX(Bx, P.lx), bd:calcBD(Bx, P.bd) }); } catch (e){ continue; }
+    let hit = null; for (let i = n - 1; i >= Math.max(0, n - lb[iv]); i--) if (r.LV[i]){ hit = i; break; }
+    if (hit == null) continue;
+    let lo = Infinity; for (let j = Math.max(0, hit - 9); j <= hit; j++) lo = Math.min(lo, Bx.l[j]);
+    out[iv] = { lv:r.LV[hit], ago:n - 1 - hit, d:Bx.d[hit], px:Bx.c[hit], conf:r.CF[hit] >= 0 ? n - 1 - r.CF[hit] : -1, stop:lo, broke:Bx.l.slice(hit + 1).some(x => x < lo), now:r.SC[n - 1] };
+  }
+  return out;
+}
+async function jwRun(){
+  if (JW.busy){ JW.stop = true; return; }
+  if (!getToken()){ JW.msg = '先到「指標設定 → 資料與顯示」貼上 FinMind token'; jwRender(); return; }
+  JW.busy = true; JW.stop = false; JW.res = []; jwRender();
+  try {
+    JW.msg = '抓最近一個交易日的全市場行情…'; jwRender();
+    const mk = await jwLatestMarket(), last = mk.d;
+    const re = JW_UI.etf ? /^(\d{4}|00\d{2,4}[A-Z]?)$/ : /^[1-9]\d{3}$/;
+    const all = mk.data.filter(r => re.test(r.stock_id) && +r.close > 0).sort((a, b) => (+b.Trading_money || 0) - (+a.Trading_money || 0));
+    const uni = JW_UI.n >= 9999 ? all.filter(r => +r.Trading_money >= 1e7) : all.slice(0, JW_UI.n), byId = Object.fromEntries(mk.data.map(r => [r.stock_id, r]));
+    const extra = {};   // 補缺的日子（全市場一次抓）
+    let done = 0, fetched = 0; const t0 = Date.now();
+    const work = async r => {
+      if (JW.stop) return; const id = r.stock_id;
+      let c = await jwGet(id), rows = c ? jwUnpack(c) : null;
+      const lastHave = rows && rows.length ? rows[rows.length - 1][0] : '';
+      if (!rows || rows.length < 50){ rows = stockRows(await finmind({ dataset:'TaiwanStockPrice', data_id:id, start_date:JW_START, end_date:last })); fetched++; }
+      else if (lastHave < last){
+        const miss = mk.ds.filter(d => d > lastHave && d <= last);
+        if (miss.length && miss.length <= 5 && mk.ds.includes(lastHave)){
+          for (const d of miss){ if (!extra[d]) extra[d] = d === last ? Promise.resolve(byId) : finmind({ dataset:'TaiwanStockPrice', start_date:d, end_date:d }).then(a => Object.fromEntries(a.map(x => [x.stock_id, x]))).catch(() => ({}));
+            const m = await extra[d], x = m[id]; if (x) rows = mergeRows(rows, stockRows([x])); }
+        } else { rows = mergeRows(rows, stockRows(await finmind({ dataset:'TaiwanStockPrice', data_id:id, start_date:lastHave, end_date:last }))); fetched++; }
+      }
+      if (rows && rows.length){ if (!c || rows[rows.length - 1][0] !== lastHave) jwPut(id, jwPack(rows));
+        const o = jwScanOne(rows); if (Object.keys(o).length) JW.res.push({ id, name:nameOf(id) || r.stock_name || '', c:+r.close, chg:+r.spread / (+r.close - +r.spread) * 100, amt:+r.Trading_money, hit:o }); }
+      done++; if (done % 5 === 0 || done === uni.length){ const sec = (Date.now() - t0) / 1000, eta = done ? sec / done * (uni.length - done) : 0;
+        JW.msg = '掃描中 ' + done + '／' + uni.length + (fetched ? '（第一次下載歷史資料 ' + fetched + ' 檔，之後就快了）' : '') + '，約剩 ' + Math.ceil(eta) + ' 秒'; jwRender(true); }
+      await sleep(0);
+    };
+    let k = 0; const pool = Array.from({ length:4 }, async () => { while (k < uni.length && !JW.stop){ const r = uni[k++]; try { await work(r); } catch (e){ if (/額度|token|憑證/.test(e.message)){ JW.stop = true; JW.msg = e.message; } else done++; } } });
+    await Promise.all(pool);
+    JW.at = last; JW.msg = (JW.stop ? '已停止。' : '') + '掃描 ' + done + ' 檔（' + last + ' 收盤），找到 ' + JW.res.length + ' 檔。';
+    try { LS.set(PFX + 'jwres', { at:last, res:JW.res }); } catch (e){}
+  } catch (e){ JW.msg = '失敗：' + e.message; }
+  JW.busy = false; jwRender();
+}
+function jwOpen(id, iv){
+  if (iv && UI.interval !== iv){ const b = document.querySelector('#intervalSeg button[data-v="' + iv + '"]'); if (b) b.click(); }
+  loadSymbol(id); window.scrollTo({ top:0, behavior:'smooth' });
+}
+function jwRender(light){
+  const box = document.getElementById('jwBox'); if (!box) return;
+  document.getElementById('togJwBody').setAttribute('aria-pressed', String(!!JW_UI.open)); box.hidden = !JW_UI.open; if (!JW_UI.open) return;
+  const m = document.getElementById('jwMsg'); if (light && m){ m.textContent = JW.msg; return; }
+  if (!JW.res){ try { const s = LS.get(PFX + 'jwres', null); if (s){ JW.res = s.res; JW.at = s.at; JW.msg = '上次掃描：' + s.at + ' 收盤（' + s.res.length + ' 檔）。按「開始掃描」更新。'; } } catch (e){} }
+  const seg = (key, opts) => '<div class="seg">' + opts.map(([v, l]) => '<button data-jw="' + key + '" data-v="' + v + '" aria-pressed="' + (String(JW_UI[key]) === String(v)) + '">' + l + '</button>').join('') + '</div>';
+  let h = '<div class="row">' + seg('n', [[150, '前 150'], [300, '前 300'], [600, '前 600'], [9999, '全部（成交值 1 千萬以上）']]) + seg('need', [[3, '★★★ 以上'], [4, '只看 ★★★★']]) +
+    '<label><input type="checkbox" data-jwc="onlyConf"' + (JW_UI.onlyConf ? ' checked' : '') + '> 只看已止跌✔</label><label><input type="checkbox" data-jwc="etf"' + (JW_UI.etf ? ' checked' : '') + '> 含 ETF</label></div>' +
+    '<div class="row"><label>往回看：日 K <input type="number" min="1" max="30" data-jwn="lbD" value="' + JW_UI.lbD + '"> 根</label><label>週 K <input type="number" min="1" max="20" data-jwn="lbW" value="' + JW_UI.lbW + '"> 根</label><label>月 K <input type="number" min="1" max="12" data-jwn="lbM" value="' + JW_UI.lbM + '"> 根</label>' +
+    '<button class="buy" data-jw="run">' + (JW.busy ? '停止' : '開始掃描') + '</button></div><div class="note2" id="jwMsg">' + esc(JW.msg || '依成交值排名掃描；第一次每檔要下載 2008 年起的日 K（建議用 Wi-Fi，300 檔約 3～6 分鐘），之後只補新的日子，幾十秒就好。') + '</div>';
+  const rs = (JW.res || []).map(r => { const ivs = ['D', 'W', 'M'].filter(iv => r.hit[iv] && r.hit[iv].lv >= JW_UI.need && (!JW_UI.onlyConf || r.hit[iv].conf >= 0)); return { r, ivs, best:Math.max(0, ...ivs.map(iv => r.hit[iv].lv)), ago:Math.min(99, ...ivs.map(iv => r.hit[iv].ago)) }; })
+    .filter(x => x.ivs.length).sort((a, b) => b.ivs.length - a.ivs.length || b.best - a.best || a.ago - b.ago || b.r.amt - a.r.amt);
+  const cell = (r, iv) => { const o = r.hit[iv]; if (!o || o.lv < JW_UI.need || (JW_UI.onlyConf && o.conf < 0)) return '<td class="jwc dim">—</td>';
+    const col = o.lv >= 4 ? 'var(--jw4)' : 'var(--jw3)';
+    return '<td class="jwc" data-jwo="' + r.id + '" data-iv="' + iv + '"><b style="color:' + col + '">' + (o.lv >= 4 ? '★★★★' : '★★★') + '</b><small>' + (o.ago ? o.ago + ' 根前' : '最新') + '</small>' +
+      (o.conf >= 0 ? '<small class="ok">止跌✔' + (o.conf ? ' ' + o.conf + '前' : '') + '</small>' : o.broke ? '<small class="bad">又破底</small>' : '<small>未止跌</small>') + '<small>損 ' + fmtP(o.stop) + '</small></td>'; };
+  h += '<div class="vtabw"><table class="vtab jwtab"><thead><tr><th>股票</th><th>日 K</th><th>週 K</th><th>月 K</th></tr></thead><tbody>' +
+    (rs.length ? rs.slice(0, 200).map(({ r }) => '<tr><td><a href="#" data-jwo="' + r.id + '" data-iv="D">' + esc(r.id + ' ' + r.name) + '</a><small>' + fmtP(r.c) + ' <span style="color:' + (r.chg >= 0 ? 'var(--up)' : 'var(--down)') + '">' + (r.chg >= 0 ? '+' : '') + (isFinite(r.chg) ? r.chg.toFixed(2) : '0') + '%</span></small><small>成交值 ' + (r.amt / 1e8).toFixed(1) + ' 億</small></td>' + cell(r, 'D') + cell(r, 'W') + cell(r, 'M') + '</tr>').join('')
+      : '<tr><td colspan="4" style="text-align:center;color:var(--muted)">' + (JW.res ? '目前沒有符合的股票' : '還沒掃描') + '</td></tr>') + '</tbody></table></div>' +
+    '<p class="note2">點日 K／週 K／月 K 格子會直接用那個週期打開這檔。★★★＝四個條件（VWB 第三通道以下、布林大底 50 以上、尋龍底、神奇波段底）有三個同時出現，★★★★＝四個都有；「止跌✔」＝之後止跌並突破前 3 根最高，回測這時候再進場被割的比例比第一天進場少一半。停損＝訊號前 10 根最低點。只是參考，不是投資建議。</p>';
+  box.innerHTML = h;
+}
+document.addEventListener('click', e => {
+  const t = e.target.closest('[data-jw], [data-jwo]'); if (!t || !t.closest('#jwSec')) return; e.preventDefault();
+  if (t.dataset.jwo){ jwOpen(t.dataset.jwo, t.dataset.iv); return; }
+  const k = t.dataset.jw; if (k === 'run'){ jwRun(); return; }
+  JW_UI[k] = +t.dataset.v; jwSaveUI(); jwRender();
+});
+document.addEventListener('change', e => { const t = e.target; if (!t.closest || !t.closest('#jwSec')) return;
+  if (t.dataset.jwc){ JW_UI[t.dataset.jwc] = t.checked; } else if (t.dataset.jwn){ JW_UI[t.dataset.jwn] = Math.max(1, Math.round(+t.value || 1)); JW.msg = '往回看的根數改了，要重新掃描才會更新'; }
+  jwSaveUI(); jwRender(); });
+document.getElementById('togJwBody').onclick = () => { JW_UI.open = !JW_UI.open; jwSaveUI(); jwRender(); };
+document.getElementById('navJw').addEventListener('click', e => { e.preventDefault(); const s = document.getElementById('jwSec'); s.hidden = false; JW_UI.open = true; jwSaveUI(); jwRender(); s.scrollIntoView({ behavior:'smooth' }); });
+try { jwRender(); } catch (e){}
 
 /* ═════════════ 回測 backtest ═════════════
    用目前載入的這檔股票、這個週期，把任何一個指標訊號當進場，照設定的出場規則一筆一筆模擬（同時只持有一筆）。
