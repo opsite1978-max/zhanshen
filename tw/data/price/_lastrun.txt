@@ -1,0 +1,10 @@
+11-24 04:35:06 2026-11-23 stocks 1960
+11-24 04:35:10 fetched days 1
+11-24 04:35:11 vwb 1960 stocks 164 need more history 605 days
+11-24 04:35:20 bbot 1960 stocks 1960 with long history
+11-24 04:35:22 jgn 83 stocks with signal in last 20 days
+11-24 04:35:37 lx 1905 stocks; long none/close/ohlc [64, 0, 1841]
+11-24 04:35:38 qz 35 stocks with 起漲 in last 30 days; breadth ['2026-11-23', 5]
+11-24 04:35:59 dg 1561 stocks
+11-24 04:36:01 push 1877 stocks
+11-24 04:36:05 build 1931 stocks 335 days backtest {'quietMa20': 681, 'bullNew': 2565, 'break60': 6111, 'bottom': 202, 'pullback': 14670, 'firstVol': 234}
