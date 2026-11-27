@@ -377,7 +377,7 @@ legend{font:600 12px var(--sans);color:var(--accent);padding:0;margin-bottom:6px
 <body>
 <div class="wrap">
   <header class="top">
-    <div class="brand"><h1 id="pageName">戰神看盤</h1><span class="sub">版本 11/27 09:00・絕望點選股</span><button class="iconbtn install" id="btnInstall" hidden title="把「我的戰神」裝成手機／電腦上的獨立 App，和家人的戰神看盤分開">安裝成 App</button></div>
+    <div class="brand"><h1 id="pageName">戰神看盤</h1><span class="sub">版本 11/27 10:30・選擇權籌碼</span><button class="iconbtn install" id="btnInstall" hidden title="把「我的戰神」裝成手機／電腦上的獨立 App，和家人的戰神看盤分開">安裝成 App</button></div>
     <nav class="chips"><a class="chip" href="/zhanshen/tw/chain.html" title="產業上中下游、龍頭績優股、各產業資金流向與主力買賣超">產業鏈</a><a class="chip" href="/zhanshen/tw/vwscreen.html">選股</a><a class="chip" href="/zhanshen/tw/bbscreen.html">大底選股</a><a class="chip" href="/zhanshen/tw/qzscreen.html">起漲選股</a><a class="chip" href="/zhanshen/tw/bdscreen.html">神奇波段選股</a><a class="chip" href="/zhanshen/tw/xdscreen.html">尋底選股</a><a class="chip" href="/zhanshen/tw/lxscreen.html">尋龍底選股</a><a class="chip" href="/zhanshen/tw/dgscreen.html" title="尋龍底 × 月週共振 × BotWT 超賣金叉，日週月三個週期一起看，找最悲觀的起漲點">獨孤九劍選股</a><a class="chip" id="navPush" href="/zhanshen/tw/push.html" title="目前這檔的流通股數、每漲 10% 要多少量與金額、波段大概在哪裡反轉">籌碼推升</a><a class="chip" href="/zhanshen/tw/dgchip.html" title="獨孤九劍＋籌碼收斂（大戶比例、股東人數、換手天數）">九劍籌碼選股</a><a class="chip" href="/zhanshen/tw/jlmj.html" title="九個訊號（尋龍底、月週共振、BotWT、神奇波段、量能情緒、超級震盪、B4 超賣轉折、籌碼收斂、低檔燃料足）一起找起漲點">九龍模金訣</a><a class="chip" href="/zhanshen/tw/sxd.html" title="每天收盤後掃全市場：今天出現尋底★、超級尋底★★／★★★ 的股票，含停損價和大盤順逆風">超級尋底選股</a><a class="chip" href="#jwSec" id="navJw" title="VWB 第三通道以下＋布林大底＋尋龍底＋神奇波段底同時出現：日 K、週 K、月 K 一起找最絕望、最常反彈的位置">絕望點選股</a><a class="chip" href="#ckSec" id="navCk" title="融資維持率、庫藏股、大戶與流通股數、本益比河流、預估 EPS、關鍵分點">個股體檢</a><a class="chip" href="/zhanshen/tw/lock.html" title="大戶、董監持股與流通股數＋獨孤九劍：找籌碼集中、好拉抬的底部股">鎖碼九劍選股</a><a class="chip" href="/zhanshen/tw/jgscreen.html">機構牛選股</a><a class="chip" href="/zhanshen/tw/fxpos.html">外資期現貨</a><a class="chip" id="calcLink" href="/zhanshen/tw/calc.html">獲利計算</a><a class="chip" href="overview.html">總覽</a><a class="chip" href="./">看盤</a></nav>
     <form class="sym" id="symForm" autocomplete="off">
       <input id="symInput" list="symList" placeholder="代號或名稱，如 2408、南亞科" aria-label="股票代號" spellcheck="false">
@@ -471,6 +471,8 @@ legend{font:600 12px var(--sans);color:var(--accent);padding:0;margin-bottom:6px
     <button class="tog" id="togML" aria-pressed="true" title="買賣力道：微分 DIF 震盪線（動態上中下界）＋買賣力道柱，起／收／抄底，★＝回測較準">買賣力道</button>
     <button class="tog" id="togB4" aria-pressed="true" title="B4 通道：MACD 主線＋自己的布林通道、MACD 柱、壓縮黃雲帶、完整共振箭頭（±100 刻度）">B4 通道</button>
     <button class="tog" id="togSF" aria-pressed="true" title="鯊魚鰭：依 B4 主線方向累加成交量，方向一換重新累加（±100 刻度）">鯊魚鰭</button>
+    <button class="tog" id="togOP" aria-pressed="true" title="選擇權籌碼（台指期）：Call、Put 主動買賣金額，看資金押哪一邊">選擇權籌碼</button>
+    <button class="tog" id="togOPV" aria-pressed="true" title="隱含波動率（台指期分 K）：臺指 VIX 與前一日高低">隱含波動率</button>
     <button class="tog" id="togSXD" aria-pressed="true" title="超級尋底：陰跌反轉突破＋尋龍底，21 日位置線上中下界">超級尋底</button>
     <button class="tog" id="togDX" aria-pressed="true" title="MultiColor DegenX：鎖碼／浮動／獲利三層，加上回測過的找底訊號">DegenX</button>
     <button class="tog" id="togIN" aria-pressed="true" title="主力意圖：法人、融資、融券借券、權證、股期、集保合成的籌碼震盪線（個股）">主力意圖</button>
@@ -1067,6 +1069,34 @@ SCHEMA.jw = { tab:'絕望點', title:'絕望點（你圈的四個位置一起看
     {k:'c3', l:'絕望★★★', t:'color', d:'#2979ff'},
     {k:'c4', l:'絕望★★★★', t:'color', d:'#d500f9'},
     {k:'cConf', l:'止跌✔', t:'color', d:'#00c853'}
+  ]}
+]};
+SCHEMA.op = { tab:'選擇權籌碼', title:'選擇權籌碼（只對應台指期，建議看 1～15 分 K）：槓桿最大的選擇權通常最先反映資金方向。每一筆台指選擇權成交，外盤（主動買）還是內盤（主動賣），乘上權利金算成金額：紅線＝Call 主動買減主動賣（往上＝有人搶買 Call 看漲，往下＝一直賣 Call 看不漲），綠線＝Put 主動買減主動賣（往上＝搶買 Put 看跌、避險，往下＝一直賣 Put 看不跌），每個時段（日盤、夜盤）從 0 開始累計；柱子＝這根 K 棒的（Call 淨買）－（Put 淨買），紅＝偏多、綠＝偏空。搭配「隱含波動率」副圖：價格還在跌、Put 一直被賣、波動率又往下＝跌不下去；價格還在漲、Call 一直被賣、波動率往上＝漲不上去。主圖的壓力／支撐＝前一個交易日未平倉最多的買權、賣權履約價（選擇權賣方最想守住的位置）。資料：盤中每 20 秒讀一次 FinMind 選擇權即時報價，打開這頁、看台指期時才會記錄（存在這台裝置，換手機不會帶過去）；過去的日子可以打開「用逐筆資料補過去幾天」（資料量大，建議用電腦、Wi-Fi，而且逐筆資料沒有內外盤，只能用價格漲跌判斷買賣，比較不準）。這是自己做的指標，跟市面上的 OP666 算法不一定一樣；訊號沒有歷史資料可以回測，只是參考。', groups:[
+  { name:'計算', items:[
+    {k:'unit', l:'單位', t:'select', d:'金額', o:['金額', '口數']},
+    {k:'look', l:'訊號看最近幾根的變化', t:'int', d:6, min:2, max:30},
+    {k:'th', l:'訊號門檻：這幾根內 Put（或 Call）淨賣超過（萬元；單位用口數時就是口）', t:'float', d:200, min:1, step:10},
+    {k:'vd', l:'波動率要同方向變化至少', t:'float', d:0.3, min:0, step:0.1},
+    {k:'needV', l:'一定要有波動率資料才標訊號', t:'bool', d:true},
+    {k:'fillDays', l:'用逐筆資料補過去幾天（0＝不補；每天資料量很大）', t:'int', d:0, min:0, max:5}
+  ]},
+  { name:'顯示', items:[
+    {k:'showHist', l:'柱子（每根 K 棒的多空金額）', t:'bool', d:true},
+    {k:'walls', l:'主圖畫選擇權壓力、支撐（前一天未平倉最多的履約價）', t:'bool', d:true},
+    {k:'walls2', l:'也畫次壓力、次支撐', t:'bool', d:false},
+    {k:'mainSig', l:'主圖也標「跌不下去／漲不上去」', t:'bool', d:true},
+    {k:'cCall', l:'Call 線', t:'color', d:'#ff4d4f'},
+    {k:'cPut', l:'Put 線', t:'color', d:'#26c281'},
+    {k:'cUp', l:'偏多（紅）', t:'color', d:'#ef5350'},
+    {k:'cDn', l:'偏空（綠）', t:'color', d:'#26a69a'}
+  ]}
+]};
+SCHEMA.opv = { tab:'隱含波動率', title:'隱含波動率（只對應台指期分 K）：期交所臺指選擇權波動率指數（VIX）每 15 秒的官方數字，就是選擇權的「價格」——市場願意花多少錢買保險。粗線 H／L＝前一個交易日的最高、最低。波動率往下＝恐慌退、通常對多方有利；往上＝避險升溫。2026/3 以後才有分時資料。', groups:[
+  { name:'顏色', items:[
+    {k:'cUp', l:'波動率上升', t:'color', d:'#9aa3b2'},
+    {k:'cDn', l:'波動率下降', t:'color', d:'#d6dbe6'},
+    {k:'cHi', l:'前一日高（H）', t:'color', d:'#2e7d32'},
+    {k:'cLo', l:'前一日低（L）', t:'color', d:'#c62828'}
   ]}
 ]};
 SCHEMA.cp = { tab:'抄底預警', title:'抄底預警（照你提供的通達信公式移植）：方塊柱＝趨勢（55 根位置的雙重平滑，用收盤價和開盤價各算一條，收盤那條高於前一根開盤那條＝紅，否則灰）；紅／綠柱＝多方／空方（34 根位置的 5 日平均減 20）；青線＝預警（平常 65，兩種順勢指標同時過熱 +15、同時超賣 −15）。抄底＝7、13、6 根強弱指標都很低、在 60 根區間最底部、離 30 天高點跌超過 20%、15 根隨機指標極低、大盤 14 根隨機指標低於 30、股價跌到近 30 根低點九成附近、而且有 50 根以上資料。公式裡的大盤用加權指數（第一次多用 1 個 FinMind 額度，之後每天更新一次）；流通股本用集保總股數（沒有集保資料的商品，改用前一根低點的九成）。分 K 的大盤數值用前一個交易日的。這個公式沒有回測過。', groups:[
@@ -2236,7 +2266,7 @@ for (const ind of Object.keys(SCHEMA)) P[ind] = Object.assign(defaults(ind), LS.
 if (P.kmo && !LS.get(PFX + 'mig:kmo1', false)){ P.kmo.showKDX = false; P.kmo.showMX = false; if (LS.get(PFX + 'p:kmo', null)) LS.set(PFX + 'p:kmo', P.kmo); LS.set(PFX + 'mig:kmo1', true); }
 
 const UI = Object.assign({
-  symbol:'2330', interval:'D', adj:false, showZ:true, showD:true, showBB:true, showVL:true, showChips:true, showTG:true, showIN:true, showDX:true, showJP:true, showBS:true, showMWR:true, showTMP:true, showML:true, showB4:true, showSF:true, showSXD:true, showCP:true, showDK:true, showZXP:true, showLS:true, showMD:true, showBD:true, showKM:true, showKMO:true, showVXT:true, showDCO:true, showBWT:true, showYM:true, showSDB:true, showCCI:true, showKP:true, showJJ:true, showQJ:true, showCD:true, showSMI:true, showTP:true, showLBB:true, showWL:true, showSY:true, showHM:true, showVO:true, showBBX:true, showCAMO:true, showSO:true, showDZ:true, showLX:true, showLHB:true, showQLW:false, showJGN:true, live:true, subMarks:false, wFilter:'',
+  symbol:'2330', interval:'D', adj:false, showZ:true, showD:true, showBB:true, showVL:true, showChips:true, showTG:true, showIN:true, showDX:true, showJP:true, showBS:true, showMWR:true, showTMP:true, showML:true, showB4:true, showSF:true, showSXD:true, showOP:true, showOPV:true, showCP:true, showDK:true, showZXP:true, showLS:true, showMD:true, showBD:true, showKM:true, showKMO:true, showVXT:true, showDCO:true, showBWT:true, showYM:true, showSDB:true, showCCI:true, showKP:true, showJJ:true, showQJ:true, showCD:true, showSMI:true, showTP:true, showLBB:true, showWL:true, showSY:true, showHM:true, showVO:true, showBBX:true, showCAMO:true, showSO:true, showDZ:true, showLX:true, showLHB:true, showQLW:false, showJGN:true, live:true, subMarks:false, wFilter:'',
   token:'', start:'2000-01-01', showVolume:true, scaleAll:false, showZoom:false,
   theme:null, night:false, days:{}, weights:{ main:3, z:1.35, d:1.35 }
 }, LS.get(PFX + 'ui', {}));
@@ -2244,7 +2274,7 @@ if (!UI.theme){ try { UI.theme = JSON.parse(localStorage.getItem('twchart.settin
 if (!UI.nightV2){ UI.nightV2 = 1; UI.night = true; }
 if (!UI.viewV3){ UI.viewV3 = 1; UI.viewV2 = 1; for (const k of ['showZ', 'showD', 'showBB', 'showVL', 'showTG', 'showIN', 'showDX', 'showJP', 'showCP', 'showDK', 'showZXP']) UI[k] = true; }
 if (!UI.weights || !UI.weights.main) UI.weights = { main:3, z:1.35, d:1.35 };
-const DEF_W = Object.assign({ main:3, z:1.35, d:1.35, b4:2.2, sf:1.2 }, { bb:1.1, vl:1.2, tg:1.2, in:1.3, dx:1.3, jp:1.3, cp:1.4, dk:1.3, zx:1.3, ls:1.3, md:1.4, bd:1.4, km:1.4, kmo:1.4, vxt:1.4, dco:1.4, bwt:1.4, ym:1.4, sdb:1.4, cci:1.4, kp:1.4, jj:1.3, qj:1.6, cd:1.4, smi:1.3, tp:1.3, lbb:1.5, wl:1.7, sy:1.6, hm:1.6, vo:1.5, bbx:1.2, camo:1.5, so:1.9, dz:1.6, lx:1.4, lhb:1.5, qlw:1.3 });
+const DEF_W = Object.assign({ main:3, z:1.35, d:1.35, b4:2.2, sf:1.2, op:1.6, opv:1.0 }, { bb:1.1, vl:1.2, tg:1.2, in:1.3, dx:1.3, jp:1.3, cp:1.4, dk:1.3, zx:1.3, ls:1.3, md:1.4, bd:1.4, km:1.4, kmo:1.4, vxt:1.4, dco:1.4, bwt:1.4, ym:1.4, sdb:1.4, cci:1.4, kp:1.4, jj:1.3, qj:1.6, cd:1.4, smi:1.3, tp:1.3, lbb:1.5, wl:1.7, sy:1.6, hm:1.6, vo:1.5, bbx:1.2, camo:1.5, so:1.9, dz:1.6, lx:1.4, lhb:1.5, qlw:1.3 });
 UI.weights = Object.assign({}, DEF_W, UI.weights);
 for (const k in UI.weights) if (k !== 'main' && typeof UI.weights[k] === 'number') UI.weights[k] = Math.min(3.5, Math.max(0.6, UI.weights[k]));
 if (!LS.get(PFX + 'b4w', false)){ UI.weights.b4 = DEF_W.b4; UI.weights.sf = DEF_W.sf; LS.set(PFX + 'b4w', true); }
@@ -2400,6 +2430,234 @@ function calcJW(B, p, parts){
     }
   }
   return { SC, LV, CF, CONF, FL, mk, sig, ev:[], main:[] };
+}
+
+/* ═════════════ 選擇權籌碼（Call／Put 主動買賣金額）＋隱含波動率＋未平倉壓力支撐 ═════════════
+   想法：槓桿最大的選擇權最先反映資金方向。①籌碼：台指選擇權每一筆成交是外盤（主動買）還是內盤（主動賣），
+   乘上權利金算成金額，買權、賣權各自累計；②價格：臺指選擇權波動率指數（VIX）。
+   資料：盤中每 20 秒向 FinMind 讀台指選擇權即時報價，用「成交量增加了多少」記帳（打開這頁、看台指期時才會記錄，存在這台裝置）；
+   過去的日子可以用 FinMind 逐筆成交補（資料量大，預設不補）；波動率用期交所官方 15 秒資料；壓力支撐用前一個交易日各履約價未平倉。 */
+var OPF = { sess:new Map(), loading:new Set(), err:'', info:null, infoT:0, infoP:null, busy:false, last:0, fills:new Set(), fillErr:'' };
+var opDBp = null;
+function opDB(){ return opDBp || (opDBp = new Promise(res => { try { const r = indexedDB.open('zs-op', 1); r.onupgradeneeded = () => { if (!r.result.objectStoreNames.contains('s')) r.result.createObjectStore('s'); }; r.onsuccess = () => res(r.result); r.onerror = r.onblocked = () => res(null); } catch (e){ res(null); } })); }
+async function opGet(k){ const db = await opDB(); if (!db) return null; return new Promise(res => { try { const q = db.transaction('s').objectStore('s').get(k); q.onsuccess = () => res(q.result || null); q.onerror = () => res(null); } catch (e){ res(null); } }); }
+async function opPut(k, v){ const db = await opDB(); if (!db) return; try { db.transaction('s', 'readwrite').objectStore('s').put(v, k); } catch (e){} }
+// 時段：日盤 08:45～13:45、夜盤 15:00～隔天 05:00（夜盤算在開始那一天）
+function opSessOf(key){ const d = key.slice(0, 10), t = key.slice(11, 16); if (!t) return d + ' D'; if (t >= '15:00') return d + ' N'; if (t < '08:00') return shiftDay(d, -1) + ' N'; return d + ' D'; }
+// 結算日：月選＝第三個週三；W n＝第 n 個週三；F n＝第 n 個週五
+function opExpiry(code){ const m = /^(\d{4})(\d{2})(?:([WF])(\d))?$/.exec(String(code).trim()); if (!m) return null;
+  const y = +m[1], mo = +m[2], want = m[3] === 'F' ? 5 : 3, nth = m[3] ? +m[4] : 3; let c = 0;
+  for (let d = 1; d <= 31; d++){ const t = Date.UTC(y, mo - 1, d); if (new Date(t).getUTCMonth() !== mo - 1) break; if (new Date(t).getUTCDay() === want && ++c === nth) return isoDay(t); } return null; }
+function opProduct(code){ const m = /^(\d{4})(\d{2})(?:([WF])(\d))?$/.exec(String(code).trim()); if (!m) return null; const y = +m[1], mo = +m[2], n = +m[4];
+  return { prod:!m[3] ? 'TXO' : m[3] === 'W' ? 'TX' + n : 'TX' + ('UVXYZ'[n - 1] || ''), cl:'ABCDEFGHIJKL'[mo - 1] + (y % 10), pl:'MNOPQRSTUVWX'[mo - 1] + (y % 10) }; }
+// 前一個交易日的台指選擇權（各結算月份、各履約價未平倉）：決定要讀哪幾個商品、壓力支撐在哪
+function opInfo(){
+  const today = tpNow().date;
+  if (OPF.info && OPF.info.at === today || OPF.infoP || !getToken() || Date.now() - OPF.infoT < 120e3) return OPF.info;
+  OPF.infoT = Date.now();
+  OPF.infoP = (async () => {
+    const c = await DSTORE.get('op:info'); if (c && c.at === today){ OPF.info = c; return; }
+    const ds = await tradingDates(6); let rows = [], d0 = '';
+    for (let k = ds.length - 1; k >= 0 && !rows.length; k--){ if (ds[k] >= today) continue; d0 = ds[k]; try { rows = await finmind({ dataset:'TaiwanOptionDaily', data_id:'TXO', start_date:d0, end_date:d0 }); } catch (e){ rows = []; } }
+    if (!rows.length) throw new Error('讀不到台指選擇權未平倉');
+    const ex = new Map();
+    for (const r of rows){ const code = String(r.contract_date || '').trim(), e = opExpiry(code); if (!e || e < today) continue;
+      if (r.trading_session && r.trading_session !== 'position') continue;
+      const g = ex.get(code) || { code, exp:e, oi:0, C:{}, P:{} }; ex.set(code, g);
+      const K = +r.strike_price, oi = +r.open_interest || 0, call = /^c/i.test(r.call_put); (call ? g.C : g.P)[K] = Math.max((call ? g.C : g.P)[K] || 0, oi); g.oi += oi; }
+    const list = [...ex.values()].sort((a, b) => a.exp < b.exp ? -1 : 1);
+    OPF.info = { at:today, d0, exps:list.map(g => ({ code:g.code, exp:g.exp, oi:g.oi, C:g.C, P:g.P })) };
+    DSTORE.put('op:info', OPF.info);
+  })().catch(e => { OPF.err = e.message; }).finally(() => { OPF.infoP = null; recomputeSoon(); });
+  return OPF.info;
+}
+// 壓力支撐：在最近、未平倉夠多的那個結算月份裡，現價以上買權未平倉最大的履約價＝壓力，現價以下賣權未平倉最大的履約價＝支撐
+function opWalls(px){
+  const I = OPF.info; if (!I || !I.exps.length || !(px > 0)) return null;
+  const today = tpNow().date, mx = Math.max(...I.exps.map(e => e.oi));
+  const e = I.exps.find(x => (x.exp > today || tpNow().mins < 810) && x.oi >= mx * 0.3) || I.exps[0];
+  let cK = NaN, cV = 0, pK = NaN, pV = 0, c2K = NaN, c2V = 0, p2K = NaN, p2V = 0;
+  for (const [k, v] of Object.entries(e.C)){ const K = +k; if (K < px) continue; if (v > cV){ c2K = cK; c2V = cV; cK = K; cV = v; } else if (v > c2V){ c2K = K; c2V = v; } }
+  for (const [k, v] of Object.entries(e.P)){ const K = +k; if (K > px) continue; if (v > pV){ p2K = pK; p2V = pV; pK = K; pV = v; } else if (v > p2V){ p2K = K; p2V = v; } }
+  return { code:e.code, exp:e.exp, d0:I.d0, cK, cV, pK, pV, c2K, c2V, p2K, p2V };
+}
+// 讀一個時段的紀錄（存在這台裝置）
+function opLoadSess(keys){
+  for (const k of keys){ if (OPF.sess.has(k) || OPF.loading.has(k)) continue; OPF.loading.add(k);
+    opGet('s:' + k).then(v => { if (!OPF.sess.has(k)) OPF.sess.set(k, v || { m:{}, prev:{}, last:0, src:'' }); }).finally(() => { OPF.loading.delete(k); recomputeSoon(); }); }
+}
+// 外盤＝主動買、內盤＝主動賣；沒有就看成交價靠賣價或買價；再沒有就看價格比上一次高或低
+function opSide(r, prevPx){ const tt = +r.TickType; if (tt === 1) return 1; if (tt === 2) return -1;
+  const c = +r.close, b = +r.buy_price, a = +r.sell_price; if (a > 0 && c >= a) return 1; if (b > 0 && c <= b) return -1;
+  if (prevPx != null && c > prevPx) return 1; if (prevPx != null && c < prevPx) return -1; return 0; }
+async function opPoll(){
+  if (OPF.busy || document.hidden || !getToken() || !UI.showOP || !(RAW && FUTS[RAW.id])) return;
+  const ses = liveSession('TX'); if (!ses) return;
+  const I = opInfo(); if (!I) return;
+  OPF.busy = true;
+  try {
+    const now = tpNow(), today = now.date, alive = I.exps.filter(e => e.exp > today || (e.exp === today && now.mins < 810)).slice(0, 2);
+    const prods = new Map(); for (const e of alive){ const lp = opProduct(e.code); if (!lp) continue; if (!prods.has(lp.prod)) prods.set(lp.prod, []); prods.get(lp.prod).push(lp); }
+    const res = await Promise.all([...prods.keys()].map(p => liveSnap('taiwan_options_snapshot', p).catch(() => [])));
+    const hh = String(Math.floor(now.mins / 60)).padStart(2, '0'), mm = String(now.mins % 60).padStart(2, '0'), mk = today + ' ' + hh + ':' + mm, sk = opSessOf(mk);
+    if (!OPF.sess.has(sk)){ const v = await opGet('s:' + sk); OPF.sess.set(sk, v || { m:{}, prev:{}, last:0, src:'live' }); }
+    const st = OPF.sess.get(sk), fresh = st.last && Date.now() - st.last < 3 * 60e3;   // 太久沒記錄（例如關掉頁面）：這次只當基準，不把中間的量算進來
+    const add = st.m[mk] || [0, 0, 0, 0, 0, 0, 0, 0]; let nNew = 0;
+    [...prods.values()].forEach((lps, pi) => { for (const r of res[pi] || []){
+      const m = /^[A-Z0-9]{3}(\d+)([A-X])(\d)$/.exec(r.options_id || ''); if (!m) continue;
+      const suf = m[2] + m[3]; if (!lps.some(lp => lp.cl === suf || lp.pl === suf)) continue;
+      const call = 'ABCDEFGHIJKL'.includes(m[2]), id = r.options_id, tv = +r.total_volume || 0, p = st.prev[id];
+      st.prev[id] = [tv, +r.close];
+      if (!fresh || !p || tv <= p[0]) continue;
+      const dv = tv - p[0], side = opSide(r, p[1]); if (!side) continue;
+      const money = dv * (+r.close || 0) * 50 / 1e4;   // 萬元
+      const j = (call ? 0 : 2) + (side > 0 ? 0 : 1); add[j] += money; add[j + 4] += dv; nNew++;
+    } });
+    if (nNew || !st.m[mk]) st.m[mk] = add;
+    st.last = Date.now(); st.src = st.src || 'live'; OPF.last = Date.now(); OPF.err = '';
+    opPut('s:' + sk, st);
+    if (nNew) recomputeSoon();
+  } catch (e){ OPF.err = e.message; }
+  finally { OPF.busy = false; }
+}
+setInterval(() => { try { opPoll(); } catch (e){} }, 20e3);
+// 過去的日子：FinMind 逐筆成交（沒有內外盤，只能用「比同一個合約上一筆高＝買、低＝賣」判斷），整理成每分鐘
+async function opFill(date){
+  if (OPF.fills.has(date)) return; OPF.fills.add(date);
+  try {
+    const rows = await finmind({ dataset:'TaiwanOptionTick', data_id:'TXO', start_date:date, end_date:date });
+    if (!rows.length) throw new Error(date + ' 沒有逐筆資料');
+    const exps = [...new Set(rows.map(r => String(r.contract_date || '').trim()))].map(c => [c, opExpiry(c)]).filter(x => x[1] && x[1] >= date).sort((a, b) => a[1] < b[1] ? -1 : 1).slice(0, 2).map(x => x[0]);
+    const last = {}, side0 = {}, out = {};
+    const tsOf = r => { const s = String(r.date || ''); return s.length > 10 ? s.slice(0, 16) : s + ' ' + String(r.Time || r.time || '').slice(0, 5); };
+    rows.sort((a, b) => tsOf(a) < tsOf(b) ? -1 : tsOf(a) > tsOf(b) ? 1 : 0);
+    for (const r of rows){ const cd = String(r.contract_date || '').trim(); if (!exps.includes(cd)) continue;
+      const call = /^c/i.test(r.PutCall), key = cd + (call ? 'C' : 'P') + r.ExercisePrice, px = +r.price, v = +r.volume || 0; if (!(px > 0) || !v) continue;
+      let s = last[key] == null ? 0 : px > last[key] ? 1 : px < last[key] ? -1 : side0[key] || 0; last[key] = px; if (s) side0[key] = s; if (!s) continue;
+      const mk = tsOf(r), sk = opSessOf(mk), S = out[sk] || (out[sk] = {}), a = S[mk] || (S[mk] = [0, 0, 0, 0, 0, 0, 0, 0]), j = (call ? 0 : 2) + (s > 0 ? 0 : 1);
+      a[j] += v * px * 50 / 1e4; a[j + 4] += v; }
+    for (const [sk, m] of Object.entries(out)){ const old = OPF.sess.get(sk) || await opGet('s:' + sk);
+      if (old && old.src === 'live' && Object.keys(old.m).length > 30) continue;   // 已經有盤中即時紀錄（有內外盤）就不蓋掉
+      const v = { m, prev:{}, last:0, src:'tick' }; OPF.sess.set(sk, v); opPut('s:' + sk, v); }
+    OPF.fillErr = '';
+  } catch (e){ OPF.fillErr = '補 ' + date + ' 失敗：' + e.message; }
+  recomputeSoon();
+}
+function calcOP(B, p){
+  const n = B.n;
+  if (!RAW || RAW.sample || !FUTS[RAW.id]) return { error:'選擇權籌碼只對應台指期（大台、小台、微台）' };
+  opInfo();
+  const sessKeys = [...new Set(B.d.slice(-Math.min(n, B.intra ? 600 : 40)).map(d => B.intra ? opSessOf(d) : d + ' D').flatMap(k => B.intra ? [k] : [k, k.slice(0, 10) + ' N']))];
+  opLoadSess(sessKeys);
+  if (p.fillDays > 0 && getToken()){ const days = [...new Set(B.d.map(d => d.slice(0, 10)))].filter(d => d < tpNow().date).slice(-p.fillDays);
+    for (const d of days) if (!OPF.sess.has(d + ' D') || !Object.keys((OPF.sess.get(d + ' D') || { m:{} }).m).length) opFill(d); }
+  // 每根 K 棒把落在它時間範圍內的每分鐘紀錄加起來
+  const all = []; for (const [sk, st] of OPF.sess) if (st && st.m) for (const [k, a] of Object.entries(st.m)) all.push([k, a]);
+  all.sort((a, b) => a[0] < b[0] ? -1 : 1);
+  const CB = new Float64Array(n), CS = new Float64Array(n), PB = new Float64Array(n), PS = new Float64Array(n), has = new Uint8Array(n);
+  let j = 0; while (j < all.length && all[j][0] < B.d[0]) j++;
+  for (let i = 0; i < n; i++){ const end = i + 1 < n ? B.d[i + 1] : '9999';
+    while (j < all.length && all[j][0] < end){ const a = all[j][1], u = p.unit === '口數' ? 4 : 0; CB[i] += a[u]; CS[i] += a[u + 1]; PB[i] += a[u + 2]; PS[i] += a[u + 3]; has[i] = 1; j++; } }
+  const CN = nanArr(n), PN = nanArr(n), NB = nanArr(n), H = nanArr(n);
+  let cn = 0, pn = 0, prevS = '';
+  for (let i = 0; i < n; i++){ const s = B.intra ? opSessOf(B.d[i]) : B.d[i];
+    if (s !== prevS){ cn = 0; pn = 0; prevS = s; }
+    if (!has[i] && !cn && !pn) continue;
+    cn += CB[i] - CS[i]; pn += PB[i] - PS[i]; CN[i] = cn; PN[i] = pn; NB[i] = cn - pn; H[i] = (CB[i] - CS[i]) - (PB[i] - PS[i]); }
+  // 搭配波動率：跌不下去（價格還在跌、賣權被大量賣出、波動率下降）／漲不上去（價格還在漲、買權被大量賣出、波動率上升）
+  const V = nanArr(n);
+  if (B.intra){ const days = [...new Set(B.d.map(d => d.slice(0, 10)))]; vxIntraLoad(days);
+    for (let i = 0; i < n; i++){ const d = B.d[i].slice(0, 10), xs = VXD.ticks.get(d); if (!xs || !xs.length) continue;
+      const a = (B.t[i] - dayMs(d)) / 60e3, e = i + 1 < n && B.d[i + 1].slice(0, 10) === d ? (B.t[i + 1] - dayMs(d)) / 60e3 : a + (INTRA[B.iv] ? INTRA[B.iv].P : 5);
+      for (const [m, v] of xs){ if (m < a) continue; if (m >= e) break; V[i] = v; } } }
+  const ev = [], sig = [], tag = Array.from({ length:n }, () => []), mk = [], L = Math.max(2, p.look | 0);
+  let lastUp = -99, lastDn = -99;
+  for (let i = L; i < n; i++){
+    if (isNaN(CN[i]) || isNaN(CN[i - L]) || (B.intra && opSessOf(B.d[i]) !== opSessOf(B.d[i - L]))) continue;
+    const dC = B.c[i] / B.c[i - L] - 1, dCall = CN[i] - CN[i - L], dPut = PN[i] - PN[i - L], dV = !isNaN(V[i]) && !isNaN(V[i - L]) ? V[i] - V[i - L] : NaN, vOK = isNaN(dV) ? !p.needV : null;
+    if (dC <= 0.0005 && dPut <= -p.th && (vOK != null ? vOK : dV <= -p.vd) && i - lastDn >= L){ lastDn = i;
+      const t = '跌不下去'; tag[i].push([t + '（一直賣 Put' + (isNaN(dV) ? '' : '、波動率 ' + dV.toFixed(2)) + '）', p.cUp]); sig.push({ i, src:'選擇權籌碼', text:t, col:p.cUp });
+      ev.push({ i, y:PN[i], shape:'labelUp', text:t, col:p.cUp, tcol:'#fff', size:0.85, dy:6 }); if (p.mainSig) mk.push({ i, y:B.l[i], shape:'labelUp', text:t, col:p.cUp, tcol:'#fff', size:0.85, dy:6 }); }
+    if (dC >= -0.0005 && dCall <= -p.th && (vOK != null ? vOK : dV >= p.vd) && i - lastUp >= L){ lastUp = i;
+      const t = '漲不上去'; tag[i].push([t + '（一直賣 Call' + (isNaN(dV) ? '' : '、波動率 +' + dV.toFixed(2)) + '）', p.cDn]); sig.push({ i, src:'選擇權籌碼', text:t, col:p.cDn });
+      ev.push({ i, y:CN[i], shape:'labelDown', text:t, col:p.cDn, tcol:'#fff', size:0.85, dy:-6 }); if (p.mainSig) mk.push({ i, y:B.h[i], shape:'labelDown', text:t, col:p.cDn, tcol:'#fff', size:0.85, dy:-6 }); }
+  }
+  let any = 0; for (let i = 0; i < n; i++) if (has[i]) any++;
+  return { CB, CS, PB, PS, CN, PN, NB, H, V, has, any, ev, sig, tag, mk, main:[] };
+}
+function opFmt(v){ if (isNaN(v)) return '—'; const a = Math.abs(v); return (v < 0 ? '−' : v > 0 ? '+' : '') + (a >= 1e4 ? (a / 1e4).toFixed(2) + ' 億' : a >= 100 ? Math.round(a).toLocaleString('zh-TW') + (P.op.unit === '口數' ? ' 口' : ' 萬') : a.toFixed(1) + (P.op.unit === '口數' ? ' 口' : ' 萬')); }
+function drawOP(p, i0, i1, ci){
+  const r = R.op, q = P.op;
+  if (!r || r.error){ S = makeScale(p.top, p.h, -1, 1, 26, 6); legend([[['選擇權籌碼  ' + (r ? r.error : ''), '#ef6a5f']]], p.top); return; }
+  if (!r.any){ S = makeScale(p.top, p.h, -1, 1, 26, 6); gridAndAxis(0);
+    const live = liveSession('TX'), msg = !getToken() ? '要先貼 FinMind 憑證' : OPF.err ? OPF.err : live ? '記錄中：盤中每 20 秒讀一次選擇權成交，打開這頁才會開始累積（數字會越來越多）' : '這段時間沒有紀錄：要在盤中打開這頁才會記錄；過去的日子可在「指標設定 → 選擇權籌碼」打開「用逐筆資料補過去幾天」';
+    legend([[['選擇權籌碼', CC.axis], [msg, CC.text]]], p.top); return; }
+  const [mn, mx] = extent([r.CN, r.PN].concat(q.showHist ? [r.H] : []), i0, i1, markerExtra(r.ev, i0, i1)), pad = (mx - mn) * 0.08 || 1;
+  S = makeScale(p.top, p.h, ...rng('op', Math.min(mn - pad, -pad), Math.max(mx + pad, pad)), 26, 8);
+  gridAndAxis(0, v => opFmt(v).replace(/^\+/, ''));
+  const W = plotW(), y0 = S.y(0);
+  if (q.showHist){ const bw = Math.max(1, Math.min(view.barW * 0.6, view.barW - 1));
+    for (let i = i0; i <= i1 && i < B.n; i++){ const v = r.H[i]; if (isNaN(v)) continue; const y = S.y(v); ctx.fillStyle = rgba(v >= 0 ? q.cUp : q.cDn, 45); ctx.fillRect(X(i) - bw / 2, Math.min(y, y0), bw, Math.max(1, Math.abs(y - y0))); } }
+  { const y = Math.round(y0) + 0.5; ctx.strokeStyle = rgba(CC.axis, 40); ctx.lineWidth = 1; ctx.setLineDash([3, 3]); ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke(); ctx.setLineDash([]); }
+  strokeSeries(i => r.CN[i], () => q.cCall, i0, i1, 2.2);
+  strokeSeries(i => r.PN[i], () => q.cPut, i0, i1, 2.2);
+  visibleMarkers(r.ev, i0, i1);
+  const e = B.n - 1; if (!isNaN(r.CN[e])) axisTag(r.CN[e], q.cCall, '#fff', opFmt); if (!isNaN(r.PN[e])) axisTag(r.PN[e], q.cPut, '#fff', opFmt);
+  const k = isNaN(r.CN[ci]) ? -1 : ci, L = Math.max(2, q.look | 0);
+  const read = k < 0 ? ['這根沒有紀錄', CC.axis] : (() => { const c = r.CN[k], pu = r.PN[k];
+    const callTxt = c > 0 ? '買 Call 比賣 Call 多（看漲）' : '賣 Call 比買 Call 多（看不漲）', putTxt = pu > 0 ? '買 Put 比賣 Put 多（看跌）' : '賣 Put 比買 Put 多（看不跌）';
+    return [callTxt + '・' + putTxt, (c - pu) >= 0 ? q.cUp : q.cDn]; })();
+  const parts = [['選擇權籌碼', CC.axis], ['Call ' + opFmt(r.CN[ci]), q.cCall], ['Put ' + opFmt(r.PN[ci]), q.cPut], ['多空 ' + opFmt(r.NB[ci]), r.NB[ci] >= 0 ? q.cUp : q.cDn], read];
+  if (!isNaN(r.V[ci])) parts.push(['波動率 ' + r.V[ci].toFixed(2), CC.axis]);
+  for (const t of r.tag[ci] || []) parts.push(t);
+  const st = OPF.sess.get(B.intra ? opSessOf(B.d[ci]) : B.d[ci] + ' D'); if (st && st.src === 'tick') parts.push(['（逐筆補的，用價格漲跌判斷買賣，沒有內外盤那麼準）', CC.axis]);
+  if (OPF.fillErr) parts.push([OPF.fillErr, '#ef6a5f']);
+  legend([parts], p.top);
+}
+// 隱含波動率（臺指 VIX）＋前一個時段的高、低
+function calcOPV(B, p){
+  const n = B.n;
+  if (!RAW || RAW.sample || !FUTS[RAW.id]) return { error:'只對應台指期' };
+  if (!B.intra) return { error:'隱含波動率分時只在分 K 顯示（日 K 請看「波動率轉折」副圖）' };
+  const days = [...new Set(B.d.map(d => d.slice(0, 10)))]; vxIntraLoad(days);
+  const V = nanArr(n), HI = nanArr(n), LO = nanArr(n), byDay = new Map();
+  for (let i = 0; i < n; i++){ const d = B.d[i].slice(0, 10), xs = VXD.ticks.get(d); if (!xs || !xs.length) continue;
+    const a = (B.t[i] - dayMs(d)) / 60e3, e = i + 1 < n && B.d[i + 1].slice(0, 10) === d ? (B.t[i + 1] - dayMs(d)) / 60e3 : a + (INTRA[B.iv] ? INTRA[B.iv].P : 5);
+    for (const [m, v] of xs){ if (m < a) continue; if (m >= e) break; V[i] = v; }
+    if (!byDay.has(d)) byDay.set(d, [Math.max(...xs.map(x => x[1])), Math.min(...xs.map(x => x[1]))]); }
+  const ds = [...byDay.keys()].sort();
+  for (let i = 0; i < n; i++){ const d = B.d[i].slice(0, 10), k = ds.indexOf(d), pv = k > 0 ? byDay.get(ds[k - 1]) : null; if (pv){ HI[i] = pv[0]; LO[i] = pv[1]; } }
+  let any = 0; for (let i = 0; i < n; i++) if (!isNaN(V[i])) any++;
+  if (!any) return { error:getToken() ? (VXD.tpend.size ? '波動率載入中…' : '這段時間沒有波動率分時資料（期交所 15 秒資料 2026/3 起才有）') : '要先貼 FinMind 憑證' };
+  return { V, HI, LO };
+}
+function drawOPV(p, i0, i1, ci){
+  const r = R.opv, q = P.opv;
+  if (!r || r.error){ S = makeScale(p.top, p.h, -1, 1, 26, 6); legend([[['隱含波動率  ' + (r ? r.error : ''), r && /載入中/.test(r.error) ? CC.axis : '#ef6a5f']]], p.top); return; }
+  const [mn, mx] = extent([r.V, r.HI, r.LO], i0, i1), pad = (mx - mn) * 0.1 || 0.5;
+  S = makeScale(p.top, p.h, ...rng('opv', mn - pad, mx + pad), 26, 8);
+  gridAndAxis(2);
+  strokeSeries(i => r.HI[i], () => rgba(q.cHi, 15), i0, i1, 3);
+  strokeSeries(i => r.LO[i], () => rgba(q.cLo, 15), i0, i1, 3);
+  strokeSeries(i => r.V[i], i => r.V[i] >= r.V[i - 1] ? q.cUp : q.cDn, i0, i1, 1.8);
+  const e = B.n - 1; if (!isNaN(r.V[e])) axisTag(r.V[e], CC.text, CC.bg || '#000', v => fmtNum(v, 2));
+  if (!isNaN(r.HI[e])) axisTag(r.HI[e], q.cHi, '#fff', v => 'H ' + fmtNum(v, 2)); if (!isNaN(r.LO[e])) axisTag(r.LO[e], q.cLo, '#fff', v => 'L ' + fmtNum(v, 2));
+  const v = r.V[ci], L = 6, v0 = r.V[ci - L], tr = isNaN(v) || isNaN(v0) ? '' : v < v0 - 0.2 ? '下降中（恐慌退、通常有利多方）' : v > v0 + 0.2 ? '上升中（避險升溫）' : '持平';
+  legend([[['隱含波動率（臺指 VIX）', CC.axis], [isNaN(v) ? '—' : fmtNum(v, 2), CC.text], ['前一日 高 ' + fmtNum(r.HI[ci], 2) + '  低 ' + fmtNum(r.LO[ci], 2), CC.axis], tr ? [tr, v < v0 ? q.cDn : q.cUp] : ['', CC.axis]]], p.top);
+}
+// 主圖：選擇權未平倉壓力、支撐線
+function opDrawMain(){
+  if (!P.op || !P.op.walls || !RAW || RAW.sample || !FUTS[RAW.id] || !B || !B.n) return;
+  opInfo(); const w = opWalls(B.c[B.n - 1]); if (!w) return;
+  const W = plotW();
+  const hl = (v, col, txt, wd) => { if (!(v > 0)) return; const y = S.y(v); if (y < S.top || y > S.top + S.h) return;
+    ctx.save(); ctx.strokeStyle = col; ctx.lineWidth = wd; ctx.setLineDash([]); ctx.beginPath(); ctx.moveTo(0, Math.round(y) + 0.5); ctx.lineTo(W, Math.round(y) + 0.5); ctx.stroke(); ctx.restore();
+    ctx.font = '600 11px "Noto Sans TC", sans-serif'; const tw = ctx.measureText(txt).width; ctx.fillStyle = col; roundRect(W - tw - 14, y - 9, tw + 10, 17, 3); ctx.fill();
+    ctx.fillStyle = '#fff'; ctx.textAlign = 'left'; ctx.textBaseline = 'middle'; ctx.fillText(txt, W - tw - 9, y + 0.5); axisTag(v, col, '#fff', fmtP); };
+  const k = v => (v / 1000).toFixed(1) + '千口';
+  hl(w.cK, rgba(P.op.cUp, 10), '壓力（買權未平倉最多 ' + k(w.cV) + '）', 2);
+  hl(w.pK, rgba(P.op.cDn, 10), '支撐（賣權未平倉最多 ' + k(w.pV) + '）', 2);
+  if (P.op.walls2){ hl(w.c2K, rgba(P.op.cUp, 55), '次壓力 ' + k(w.c2V), 1); hl(w.p2K, rgba(P.op.cDn, 55), '次支撐 ' + k(w.p2V), 1); }
 }
 
 /* ═════════════ VWB PRO (main chart) ═════════════ */
@@ -5762,7 +6020,7 @@ function recompute(){
   const rows0 = typeof simRows === 'function' ? simRows(RAW.rows) : RAW.rows;   // 回放練習：只用到目前這根
   B = makeBars(RAW.tf && RAW.tf !== 'D' ? rows0 : aggregate(rows0, iv), iv, RAW.sample);
   R = {};
-  for (const [k, fn] of [['vwb', calcVWB], ['vwz', calcVWZ], ['vwd', calcVWD], ['bbot', calcBBOT], ['valley', calcVALLEY], ['turtle', calcTURTLE], ['intent', calcINTENT], ['degen', calcDEGEN], ['jp', calcJP], ['bs', calcBS], ['mwr', calcMWR], ['tmp', calcTMP], ['ml', calcML], ['b4', calcB4], ['sf', calcSF], ['sxd', calcSXD], ['cp', calcCP], ['dk', calcDK], ['zx', calcZX], ['ls', calcLS], ['md', calcMD], ['bao', calcBAO], ['bd', calcBD], ['km', calcKM], ['kmo', calcKMO], ['vxt', calcVXT], ['dco', calcDCO], ['bwt', calcBWT], ['ym', calcYM], ['sdb', calcSDB], ['cci', calcCCI], ['fz', calcFZ], ['kp', calcKP], ['jj', calcJJ], ['qj', calcQJ], ['cd', calcCD], ['smi', calcSMI], ['tp', calcTP], ['lbb', calcLBB], ['wl', calcWL], ['sy', calcSY], ['hm', calcHM], ['vo', calcVO], ['xg', calcXG], ['camo', calcCAMO], ['so', calcSO], ['dz', calcDZ], ['lx', calcLX], ['lhb', calcLHB], ['jw', calcJW], ['bz', calcBZ], ['jgn', calcJGN], ['ql', calcQL], ['qlw', calcQLW], ['kui', calcKUI], ['hpm', calcHPM], ['jm', calcJM], ['ct', calcCT]]){
+  for (const [k, fn] of [['vwb', calcVWB], ['vwz', calcVWZ], ['vwd', calcVWD], ['bbot', calcBBOT], ['valley', calcVALLEY], ['turtle', calcTURTLE], ['intent', calcINTENT], ['degen', calcDEGEN], ['jp', calcJP], ['bs', calcBS], ['mwr', calcMWR], ['tmp', calcTMP], ['ml', calcML], ['b4', calcB4], ['sf', calcSF], ['sxd', calcSXD], ['cp', calcCP], ['dk', calcDK], ['zx', calcZX], ['ls', calcLS], ['md', calcMD], ['bao', calcBAO], ['bd', calcBD], ['km', calcKM], ['kmo', calcKMO], ['vxt', calcVXT], ['dco', calcDCO], ['bwt', calcBWT], ['ym', calcYM], ['sdb', calcSDB], ['cci', calcCCI], ['fz', calcFZ], ['kp', calcKP], ['jj', calcJJ], ['qj', calcQJ], ['cd', calcCD], ['smi', calcSMI], ['tp', calcTP], ['lbb', calcLBB], ['wl', calcWL], ['sy', calcSY], ['hm', calcHM], ['vo', calcVO], ['xg', calcXG], ['camo', calcCAMO], ['so', calcSO], ['dz', calcDZ], ['lx', calcLX], ['lhb', calcLHB], ['jw', calcJW], ['op', calcOP], ['opv', calcOPV], ['bz', calcBZ], ['jgn', calcJGN], ['ql', calcQL], ['qlw', calcQLW], ['kui', calcKUI], ['hpm', calcHPM], ['jm', calcJM], ['ct', calcCT]]){
     // 用到才算：只有開著的副圖／主圖標記會真的計算，關掉的指標不花時間（以前每次都把 39 個指標全部重算）
     const obj = R, bars = B, fix = v => { Object.defineProperty(obj, k, { value:v, writable:true, configurable:true, enumerable:true }); return v; };
     Object.defineProperty(obj, k, { configurable:true, enumerable:true, set:fix,
@@ -5779,6 +6037,8 @@ function recompute(){
   if (P.ql.on && R.ql && R.ql.mk) for (const m of R.ql.mk){ const k = R.mainExtra.filter(q => q.i === m.i && q.shape === m.shape).length; R.mainExtra.push(Object.assign({}, m, { dy:(m.dy || 0) + (m.shape === 'labelDown' ? -1 : 1) * k * 18 })); }
   // 標準抄底：主升啟動★／行情結束
   if (R.bz && R.bz.mk && P.bz.on) for (const m of R.bz.mk){ const k = R.mainExtra.filter(q => q.i === m.i && q.shape === m.shape).length; R.mainExtra.push(Object.assign({}, m, { dy:(m.dy || 0) + (m.shape === 'labelDown' ? -1 : 1) * k * 18 })); }
+  // 選擇權籌碼：跌不下去／漲不上去
+  if (P.op && P.op.mainSig && UI.showOP && RAW && FUTS[RAW.id] && R.op && R.op.mk) for (const m of R.op.mk){ const k = R.mainExtra.filter(q => q.i === m.i && q.shape === m.shape).length; R.mainExtra.push(Object.assign({}, m, { dy:(m.dy || 0) + (m.shape === 'labelDown' ? -1 : 1) * k * 18 })); }
   // 絕望點：VWB 第三通道以下＋布林大底＋尋龍底＋神奇波段底（任何週期）
   if (P.jw && P.jw.on && R.jw && R.jw.mk) for (const m of R.jw.mk){ const k = R.mainExtra.filter(q => q.i === m.i && q.shape === m.shape).length; R.mainExtra.push(Object.assign({}, m, { dy:(m.dy || 0) + k * 18 })); }
   // 反轉抄底：轉折點直接畫在主圖
@@ -5999,7 +6259,7 @@ function axisTag(v, color, txtColor, fmt){
   ctx.fillStyle = txtColor; ctx.textAlign = 'left'; ctx.textBaseline = 'middle'; ctx.fillText(fmt(v), W + 6, y + 0.5);
 }
 // 副圖左上角的指標名稱（例如「神奇波段」「尋龍底」）：預設不顯示，只留數值；可在「指標設定 → 資料與顯示」打開
-const PANE_NAMES = new Set(['DegenX', 'KD MACD', 'KD+MACD', 'L2 多空擺盪', 'VW Z PRO', 'VWD 9.1', '主力全景', '主力意圖', '主力抄底', '主力控盤', '均價成本', '多空趨勢', '宇宙動能', '尋龍底', '布林大底', '布林大底加強版', '布林谷底線', '庄現趨勢', '抄底預警', '拉升機會', '擒龍操盤王', '極品反彈', '精品BS', '月週共振', '個股溫度', '買賣力道', 'B4 通道', '鯊魚鰭', '超級尋底', '發現短底', '神奇波段', '突破階梯', '紅持綠空', '聰明錢', '資金三線', '超級震盪', '量化MACD', '量能情緒', '鐵底風險', '黃柱MACD', '黑馬', '龍虎榜抄底', '龍頭CCI', '龜苓膏', '多空擺盪', '臺指波動率', '主週期', 'BotWT×3']);
+const PANE_NAMES = new Set(['DegenX', 'KD MACD', 'KD+MACD', 'L2 多空擺盪', 'VW Z PRO', 'VWD 9.1', '主力全景', '主力意圖', '主力抄底', '主力控盤', '均價成本', '多空趨勢', '宇宙動能', '尋龍底', '布林大底', '布林大底加強版', '布林谷底線', '庄現趨勢', '抄底預警', '拉升機會', '擒龍操盤王', '極品反彈', '精品BS', '月週共振', '個股溫度', '買賣力道', 'B4 通道', '鯊魚鰭', '超級尋底', '選擇權籌碼', '隱含波動率（臺指 VIX）', '發現短底', '神奇波段', '突破階梯', '紅持綠空', '聰明錢', '資金三線', '超級震盪', '量化MACD', '量能情緒', '鐵底風險', '黃柱MACD', '黑馬', '龍虎榜抄底', '龍頭CCI', '龜苓膏', '多空擺盪', '臺指波動率', '主週期', 'BotWT×3']);
 function legend(lines, top){
   ctx.font = '11.5px "IBM Plex Mono", "Noto Sans TC", ui-monospace, monospace'; ctx.textBaseline = 'middle'; ctx.textAlign = 'left';
   // 副圖文字三段：完整（名稱＋數值）／只數值／全部隱藏（只隱藏副圖的，主圖不動）
@@ -6083,6 +6343,8 @@ function draw(){
     else if (p.id === 'b4') drawB4(p, i0, i1, ci);
     else if (p.id === 'sf') drawSF(p, i0, i1, ci);
     else if (p.id === 'sxd') drawSXD(p, i0, i1, ci);
+    else if (p.id === 'op') drawOP(p, i0, i1, ci);
+    else if (p.id === 'opv') drawOPV(p, i0, i1, ci);
     else if (p.id === 'cci') drawCCI(p, i0, i1, ci);
     else if (p.id === 'kp') drawKP(p, i0, i1, ci);
     else if (p.id === 'jj') drawJJ(p, i0, i1, ci);
@@ -6325,6 +6587,7 @@ function drawMain(p, i0, i1, ci){
     axisTag(B.c[B.n - 1], B.c[B.n - 1] >= B.o[B.n - 1] ? CC.up : CC.down, '#fff', fmtP);
   }
 
+  try { opDrawMain(); } catch (e){}
   try { simDrawMain(i0, i1); } catch (e){}
 
   // legend
@@ -6401,6 +6664,8 @@ const PANES = [   // 畫的順序（由上到下）
   { id:'b4', flag:'showB4', btn:'B4', name:'B4 通道', r:'b4' },
   { id:'sf', flag:'showSF', btn:'SF', name:'鯊魚鰭', r:'sf' },
   { id:'sxd', flag:'showSXD', btn:'SXD', name:'超級尋底', r:'sxd' },
+  { id:'op', flag:'showOP', btn:'OP', name:'選擇權籌碼', r:'op', tx:true },
+  { id:'opv', flag:'showOPV', btn:'OPV', name:'隱含波動率', r:'opv', tx:true },
   { id:'cp', flag:'showCP', btn:'CP', name:'抄底預警', r:'cp', reload:true },
   { id:'dk', flag:'showDK', btn:'DK', name:'多空趨勢', r:'dk' },
   { id:'zx', flag:'showZXP', btn:'ZX', name:'庄現趨勢', r:'zx' },
@@ -6435,7 +6700,7 @@ const PANES = [   // 畫的順序（由上到下）
   { id:'qlw', flag:'showQLW', btn:'QLW', name:'擒龍操盤王', r:'qlw' }
 ];
 const STRIP_TOP = 18, STRIP_ROW = 13, STRIP_LABEL = 74;
-const paneOk = pp => !(pp.id === 'in' && R.intent && R.intent.na === '主力意圖只適用個股');
+const paneOk = pp => !(pp.id === 'in' && R.intent && R.intent.na === '主力意圖只適用個股') && !(pp.tx && !(RAW && !RAW.sample && FUTS[RAW.id]));
 // 副圖順序：存在 UI.paneSeq（沒列到的照預設順序排在後面）
 function orderedPanes(){ const seq = Array.isArray(UI.paneSeq) ? UI.paneSeq : []; const ix = id => { const k = seq.indexOf(id); return k < 0 ? 100 + PANES.findIndex(x => x.id === id) : k; }; return PANES.slice().sort((a, b) => ix(a.id) - ix(b.id)); }
 function shownPanes(){ return orderedPanes().filter(pp => UI[pp.flag] && paneOk(pp)); }
@@ -10093,7 +10358,7 @@ function queueRecompute(){ clearTimeout(recTimer); recTimer = setTimeout(recompu
 
 function buildTabs(){
   const tabs = document.getElementById('tabs');
-  const list = [['vwb', 'VWB 主圖'], ['vwz', 'VW Z'], ['vwd', 'VWD'], ['bbot', '布林大底'], ['valley', '谷底線'], ['turtle', '龜苓膏'], ['intent', '主力意圖'], ['degen', 'DegenX'], ['jp', '極品反彈'], ['bs', '精品BS'], ['mwr', '月週共振'], ['tmp', '個股溫度'], ['ml', '買賣力道'], ['b4', 'B4 鯊魚鰭'], ['sxd', '超級尋底'], ['jw', '絕望點'], ['cp', '抄底預警'], ['dk', '多空趨勢'], ['zx', '庄現趨勢'], ['ls', '拉升機會'], ['md', '量化MACD'], ['bao', '起爆'], ['bd', '神奇波段'], ['km', 'KD+MACD'], ['kmo', 'KD MACD 原版'], ['vxt', '波動率轉折'], ['dco', '主週期'], ['bwt', 'BotWT×3'], ['ym', '黃柱MACD'], ['sdb', '發現短底'], ['cci', '龍頭CCI'], ['fz', '反轉抄底'], ['kp', '主力控盤'], ['jj', '均價成本'], ['qj', '主力全景'], ['cd', '主力抄底'], ['smi', '聰明錢'], ['tp', '突破階梯'], ['lbb', '多空擺盪'], ['wl', '鐵底風險'], ['sy', '資金三線'], ['hm', '黑馬'], ['vo', '量能情緒'], ['xg', '布林大底加強版'], ['camo', '宇宙動能'], ['so', '超級震盪'], ['dz', '紅持綠空'], ['lx', '尋龍底'], ['lhb', '龍虎榜抄底'], ['hpm', 'HPM 通道'], ['jm', '操盤線'], ['ct', '週期通道'], ['jgn', '機構牛'], ['ql', '擒龍主圖'], ['qlw', '擒龍操盤王'], ['bz', '標準抄底'], ['kui', '一舉奪魁'], ['order', '副圖順序'], ['app', '資料與顯示']];
+  const list = [['vwb', 'VWB 主圖'], ['vwz', 'VW Z'], ['vwd', 'VWD'], ['bbot', '布林大底'], ['valley', '谷底線'], ['turtle', '龜苓膏'], ['intent', '主力意圖'], ['degen', 'DegenX'], ['jp', '極品反彈'], ['bs', '精品BS'], ['mwr', '月週共振'], ['tmp', '個股溫度'], ['ml', '買賣力道'], ['b4', 'B4 鯊魚鰭'], ['sxd', '超級尋底'], ['jw', '絕望點'], ['op', '選擇權籌碼'], ['opv', '隱含波動率'], ['cp', '抄底預警'], ['dk', '多空趨勢'], ['zx', '庄現趨勢'], ['ls', '拉升機會'], ['md', '量化MACD'], ['bao', '起爆'], ['bd', '神奇波段'], ['km', 'KD+MACD'], ['kmo', 'KD MACD 原版'], ['vxt', '波動率轉折'], ['dco', '主週期'], ['bwt', 'BotWT×3'], ['ym', '黃柱MACD'], ['sdb', '發現短底'], ['cci', '龍頭CCI'], ['fz', '反轉抄底'], ['kp', '主力控盤'], ['jj', '均價成本'], ['qj', '主力全景'], ['cd', '主力抄底'], ['smi', '聰明錢'], ['tp', '突破階梯'], ['lbb', '多空擺盪'], ['wl', '鐵底風險'], ['sy', '資金三線'], ['hm', '黑馬'], ['vo', '量能情緒'], ['xg', '布林大底加強版'], ['camo', '宇宙動能'], ['so', '超級震盪'], ['dz', '紅持綠空'], ['lx', '尋龍底'], ['lhb', '龍虎榜抄底'], ['hpm', 'HPM 通道'], ['jm', '操盤線'], ['ct', '週期通道'], ['jgn', '機構牛'], ['ql', '擒龍主圖'], ['qlw', '擒龍操盤王'], ['bz', '標準抄底'], ['kui', '一舉奪魁'], ['order', '副圖順序'], ['app', '資料與顯示']];
   tabs.innerHTML = list.map(([k, t]) => '<button role="tab" data-t="' + k + '" aria-selected="' + (k === activeTab) + '">' + t + '</button>').join('');
   tabs.onclick = e => { const b = e.target.closest('[data-t]'); if (!b) return; activeTab = b.dataset.t; buildTabs(); buildBody(); };
 }
